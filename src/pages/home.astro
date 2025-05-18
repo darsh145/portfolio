@@ -1,0 +1,54 @@
+---
+import Welcome from '../components/Welcome.astro';
+import Layout from '../layouts/Layout.astro';
+import DockWrapper from '../components/DockWrapper.jsx';
+import Folder from '../components/folder.jsx';
+import CircularText from '../components/CircularText.jsx';
+---
+
+<Layout>
+	<main class="container mx-auto px-4 py-8 font-manrope">
+		<!-- Additional landing page content will go here -->
+		<div class="mt-8">
+			<h2 class="flex justify-center text-center text-4xl font-bold text-gray-600 font-reenie transform rotate-[-8deg]">Welcome to my corner<br>on the internet :)
+            
+            </h2>	
+		</div>
+        <div class="cent flex justify-center items-center gap-[6rem] min-h-[50vh] w-full">
+            <a href="/service" class="flex flex-col justify-center items-center no-underline">
+                <div class="cursor-pointer">
+                    <Folder size={1.5} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+                </div>
+                <p class="text-black mt-6 font-reenie text-4xl font-bold">Services</p>
+            </a>
+            <a href="/work" class="flex flex-col justify-center items-center no-underline">
+                <div class="cursor-pointer">
+                    <Folder size={1.5} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+                </div>
+                <p class="text-black mt-6 font-reenie text-4xl font-bold">Work Gallery</p>
+            </a>
+            <a href="/extras" class="flex flex-col justify-center items-center no-underline">
+                <div class="cursor-pointer">
+                    <Folder size={1.5} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+                </div>
+                <p class="text-black mt-6 font-reenie text-4xl font-bold">Miscellaneous</p>
+            </a>
+            <a href="/collabrate" class="flex flex-col justify-center items-center no-underline">
+                <div class="cursor-pointer">
+                    <Folder size={1.5} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+                </div>
+                <p class="text-black mt-6 font-reenie text-4xl font-bold">Let's Collab</p>
+            </a>
+            
+        </div>
+        <div class="flex justify-center items-center">
+            <p class="flex justify-center text-center text-3xl font-bold text-gray-600 font-reenie w-[50rem]">
+                <!-- <img src="peeps-avatar.png" alt="" height="100" width="100" class=""> -->
+                Hey there! I'm Darsh - a Product Designer with a burning desire to build cool stuff. Currently, I run tools for creativity, share awesome stories through my UX design, and collab with visionaries to bring even more ideas to life.
+            </p>
+        </div>
+        <div class="cent flex justify-center items-center w-full">
+            <DockWrapper client:load />
+        </div>
+	</main>
+</Layout>

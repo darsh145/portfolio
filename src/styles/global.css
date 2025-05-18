@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Global cursor style to hide all default cursors */
+*,
+*::before,
+*::after,
+a,
+button,
+input[type="button"],
+input[type="submit"],
+select,
+[role="button"],
+[onclick],
+label[for] {
+  cursor: none !important;
+}

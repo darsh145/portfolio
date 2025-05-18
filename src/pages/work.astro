@@ -1,0 +1,184 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout>
+    <main class="container mx-auto px-4 py-8">
+        <div class="mb-6">
+            <a href="/home" class="inline-flex items-center px-2 py-2 bg-gray-200 hover:bg-gray-300 text-white rounded-[50%] transition-colors duration-200 back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="24" width="24" fill="#000000">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="mt-8">
+            <h2 class="flex justify-center text-center text-4xl font-bold text-gray-600 font-reenie">
+                You Dream It. I Design It. You Take All the Credit !!
+            </h2>	
+        </div>
+
+        <!-- Single Column Portfolio Projects -->
+        <div class="mt-16 flex flex-col gap-12 max-w-6xl mx-auto">
+            <!-- Project 1 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/chime.png" alt="UI/UX Design System" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Chime Music App</h3>
+                    <p class="text-gray-600 mb-6">A comprehensive design system created for a fintech startup, focusing on accessibility and modern aesthetics.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-red-200 hover:bg-red-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/coinview.png" alt="Coinview Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Coinview</h3>
+                    <p class="text-gray-600 mb-6">A cryptocurrency dashboard designed to track market movements and portfolio performance with intuitive analytics.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/watchui.png" alt="WatchUI Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">WatchUI</h3>
+                    <p class="text-gray-600 mb-6">A smartwatch interface design with a focus on minimalism and usability for health and fitness tracking.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-orange-200 hover:bg-orange-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/liveasy.png" alt="Liveasy Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Liveasy</h3>
+                    <p class="text-gray-600 mb-6">A real estate platform designed to streamline the home buying and renting experience with interactive tours.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-blue-200 hover:bg-blue-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/taskly.png" alt="Taskly Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Taskly</h3>
+                    <p class="text-gray-600 mb-6">A productivity app with intuitive task management features, calendar integration, and progress tracking.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-gray-200 hover:bg-gray-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/expense-watchui.png" alt="Expense Tracker" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Expense Tracker</h3>
+                    <p class="text-gray-600 mb-6">An expense tracking application with budget management tools, spending insights, and financial goal setting.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-purple-200 hover:bg-purple-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 7 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/verdor.png" alt="Verdor Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Verdor</h3>
+                    <p class="text-gray-600 mb-6">An e-commerce platform designed for sustainable and eco-friendly products with ethical sourcing information.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-green-200 hover:bg-green-300 text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Project 8 -->
+            <div class="flex flex-col md:flex-row gap-6 rounded-3xl overflow-hidden group bento-item p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full md:w-1/2 overflow-hidden rounded-xl">
+                    <img src="./projects/fallout.png" alt="Fallout Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                </div>
+                <div class="w-full md:w-1/2 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-3">Fallout Game UI</h3>
+                    <p class="text-gray-600 mb-6">A gaming interface redesign concept for the Fallout series, with improved inventory management and quest tracking.</p>
+                    <a href="#project-link" class="inline-flex items-center px-4 py-2 bg-[#00bbff40] hover:bg-[#00bbff80] text-black rounded-lg transition-colors duration-200 max-w-max">
+                        View Project
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    .font-reenie {
+        font-family: 'Reenie Beanie', cursive;
+    }
+
+    .bento-item {
+        transition: all 0.3s ease;
+    }
+
+    .bento-item:hover {
+        transform: translateY(-5px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .bento-item {
+            flex-direction: column;
+        }
+        .bento-item > div:first-child {
+            margin-bottom: 1rem;
+        }
+    }
+</style>

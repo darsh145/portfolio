@@ -1,0 +1,65 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <main class="container mx-auto px-4 py-8">
+        <div class="mb-6">
+            <a href="/home" class="inline-flex items-center px-2 py-2 bg-gray-200 hover:bg-gray-300 text-white rounded-[50%] transition-colors duration-200 back-button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="24" width="24" fill="#000000">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
+                </svg>
+            </a>
+        </div>
+
+        <div class="max-w-3xl mx-auto bg-white/10 backdrop-blur-sm rounded-2xl p-8">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="w-48 h-48 overflow-hidden rounded-full border-4 border-green-200">
+                    <img 
+                        src="/peeps-avatar.png" 
+                        alt="Profile Avatar" 
+                        class="w-full h-full object-cover"
+                    />
+                </div>
+                
+                <div class="flex-1 text-center md:text-left">
+                    <h1 class="text-3xl md:text-4xl font-bold mb-3 font-reenie">Hi, I'm Darsh :)</h1>
+                    <h2 class="text-xl md:text-2xl font-semibold text-gray-600 mb-4 font">UI/UX Designer & Developer</h2>
+                    <p class="text-lg text-gray-700 leading-relaxed font">
+                        I design things that serve a purpose and evoke delight. I simplify the complex, craft memorability, and build experiences that last.
+                    </p>
+                    <div class="mt-4">
+                        <a onclick="window.location.href='mailto:darshdp1454@gmail.com?subject=Inquiry%20from%20Portfolio%20Website&body=Hello%20Darsh,%0A%0AI%20visited%20your%20portfolio%20website%20and%20would%20like%20to%20connect%20thankyou'" target="_blank" class="inline-flex items-center px-4 py-2 bg-[#00bbff] transition transform active:scale-95 text-white rounded-3xl transition-duration-300">
+                        Reach Out!
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex-1 max-w-3xl mx-auto md:text-center mt-20 w-[40rem]">
+                    <h2 class="text-xl md:text-2xl font-semibold text-black mb-4 font">
+                        The only requirement is awesomeness - at the idea, redesign, or reinvention stage
+                    </h2>
+                    <p class="text-lg text-gray-700 leading-relaxed font">
+                        I partner with driven founders to build the next amazing thing. Whether they’re at the napkin idea stage, redesign phase, or building on top of an existing product, we work together to make the future come a little sooner.
+                        <br><br>
+                        At the core of my services is product design - my bread and butter - for web, mobile, or desktop platforms. Additional services include website design, advanced prototyping and animation, design systems, custom iconography and illustration. Each service comes with its own unique solution and fresh ideas - no cookie-cutter or one-size-fits-all solutions.
+                    </p>
+                    <div class="mt-4">
+                        <a onclick="window.location.href='mailto:darshdp1454@gmail.com?subject=Inquiry%20for%20Project%20Collabration'" target="_blank" class="inline-flex items-center px-10 py-2 bg-[#00bbff] transition transform active:scale-95 text-white rounded-3xl transition-duration-300">
+                        Tell me about your project
+                        </a>
+                    </div>
+                </div>
+
+                <div class="flex-1 max-w-3xl mx-auto md:text-center mt-20 w-[40rem]">
+                    <p class="text-md text-gray-600 leading-relaxed font">
+                        I’m located in Gujarat, India timezone (IST). <br>I'll get back to you as soon as I can.
+                    </p>
+                    <p class="mt-4 text-4xl text-gray-700 leading-relaxed font-reenie font-semibold transform rotate-[-8deg]">
+                        Cheers Darsh:)
+                    </p>
+                </div>
+    </main>
+</Layout>
