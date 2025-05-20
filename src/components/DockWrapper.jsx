@@ -81,8 +81,8 @@ export default function DockWrapper() {
       ),
       label: "darshdp1454@gmail.com",
       onClick: () =>
-        window.location.href=
-          "mailto:darshdp1454@gmail.com?subject=Inquiry%20from%20Portfolio%20Website&body=Hello%20Darsh,%0A%0AI%20visited%20your%20portfolio%20website%20and%20would%20like%20to%20connect%20thankyou"
+        (window.location.href =
+          "mailto:darshdp1454@gmail.com?subject=Inquiry%20from%20Portfolio%20Website&body=Hello%20Darsh,%0A%0AI%20visited%20your%20portfolio%20website%20and%20would%20like%20to%20connect%20thankyou"),
     },
   ];
 

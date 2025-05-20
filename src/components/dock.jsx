@@ -98,7 +98,7 @@ function DockLabel({ children, className = "", ...rest }) {
 
 function DockIcon({ children, className = "" }) {
   return (
-    <div className={`flex items-center justify-center text-white ${className}`}>
+    <div className={`flex items-center justify-center ${className}`}>
       {children}
     </div>
   );
@@ -138,7 +138,7 @@ export default function Dock({
           isHovered.set(0);
           mouseX.set(Infinity);
         }}
-        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-[50px] bg-gray-300 bg-opacity-[0.8] backdrop-blur-[2px] pb-2 px-4`}
+        className={`${className} absolute bottom-2 left-1/2 transform -translate-x-1/2 flex items-end w-fit gap-4 rounded-[50px] bg-gray-300 pb-2 px-4`}
         style={{ height: panelHeight }}
         role="toolbar"
         aria-label="Application dock"
