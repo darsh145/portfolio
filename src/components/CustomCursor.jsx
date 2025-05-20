@@ -55,7 +55,7 @@ export default function Cursor() {
       }}
     >
       <img
-        src="/figcursor.png"
+        src="./figcursor.png" // Changed from "/figcursor.png"
         alt=""
         width={150}
         height={150}

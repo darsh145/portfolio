@@ -9,9 +9,7 @@ export default defineConfig({
   integrations: [tailwind(), react()],
   output: "static",
   adapter: vercel({
-    webAnalytics: {
-      enabled: true
-    },
+    analytics: true, // Changed from webAnalytics: { enabled: true }
   }),
   build: {
     assets: "_astro",
