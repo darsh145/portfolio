@@ -2,14 +2,12 @@
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
-import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  base: "/",
-  output: "server",
-  adapter: cloudflare(),
+  output: "static", // Changed from "server" to "static"
+  // Removed the cloudflare adapter since you're deploying to Render
   vite: {
     build: {
       cssCodeSplit: true,
