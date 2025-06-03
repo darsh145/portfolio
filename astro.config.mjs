@@ -6,12 +6,23 @@ import react from "@astrojs/react";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
-  output: "static", // Changed from "server" to "static"
-  // Removed the cloudflare adapter since you're deploying to Render
+  output: "static",
   vite: {
     build: {
       cssCodeSplit: true,
       assetsInlineLimit: 0,
     },
+    preview: {
+      host: "0.0.0.0",
+      port: process.env.PORT ? parseInt(process.env.PORT) : 4321,
+      allowedHosts: [
+        "portfolio-3ptx.onrender.com",
+        ".onrender.com", // Allow all Render subdomains
+      ],
+    },
+    server: {
+      host: "0.0.0.0",
+      port: process.env.PORT ? parseInt(process.env.PORT) : 4321
+    }
   },
 });
