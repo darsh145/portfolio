@@ -1,23 +1,18 @@
-// @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
 import react from "@astrojs/react";
 
-// https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), react()],
   output: "static",
 
-  // Astro's own server config
   server: {
     host: "0.0.0.0",
     port: process.env.PORT ? parseInt(process.env.PORT) : 4321,
   },
-  
-  // Set your production URL
+
   site: "https://portfolio-3ptx.onrender.com",
 
-  // Vite-specific config
   vite: {
     build: {
       cssCodeSplit: true,
@@ -32,11 +27,7 @@ export default defineConfig({
     preview: {
       host: "0.0.0.0",
       port: process.env.PORT ? parseInt(process.env.PORT) : 4321,
-      allowedHosts: [
-        "portfolio-3ptx.onrender.com",
-        ".onrender.com", // Allow all Render subdomains
-        "all", // This allows all hosts as a fallback
-      ],
+      allowedHosts: ["portfolio-3ptx.onrender.com"],
     },
   },
 });
