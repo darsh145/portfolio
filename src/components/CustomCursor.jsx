@@ -48,14 +48,14 @@ export default function Cursor() {
         top: 0,
         left: 0,
         zIndex: 9999,
-        pointerEvents: "none", // Makes the cursor passthrough for clicks
+        pointerEvents: "none",
         transform: `translate(${position.x}px, ${position.y}px)`,
         opacity: visible ? 1 : 0,
         transition: "opacity 150ms ease",
       }}
     >
       <img
-        src="./figcursor.png" // Changed from "/figcursor.png"
+        src="/figcursor.png"
         alt=""
         width={150}
         height={150}
@@ -63,6 +63,10 @@ export default function Cursor() {
           transform: "translate(-50%, -50%)",
           display: "block",
           transition: "transform 150ms ease-out",
+        }}
+        onError={(e) => {
+          console.error("Cursor image failed to load:", e);
+          e.target.style.display = "none";
         }}
       />
 
