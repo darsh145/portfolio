@@ -27,7 +27,7 @@ export default defineConfig({
     preview: {
       host: "0.0.0.0",
       port: process.env.PORT ? parseInt(process.env.PORT) : 4321,
-      allowedHosts: ["portfolio-3ptx.onrender.com"],
+      allowedHosts: ['portfolio-3ptx.onrender.com'],
     },
   },
 });
