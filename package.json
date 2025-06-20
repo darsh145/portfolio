@@ -7,7 +7,7 @@
     "build": "astro build",
     "preview": "astro preview --host 0.0.0.0 --port $PORT",
     "serve": "astro preview --host 0.0.0.0 --port $PORT",
-    "start": "serve dist -s -l $PORT -H 0.0.0.0",
+    "start": "npx http-server dist -p $PORT -a 0.0.0.0",
     "astro": "astro"
   },
   "engines": {
