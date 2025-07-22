@@ -3,18 +3,19 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-    <main class="container flex mx-auto px-4 py-8">
-        <div class="flex-1 max-w-3xl mx-auto md:text-center mt-20 w-[40rem] gap-4">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="34" height="34" fill="#000000">
+    <main class="container mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
+        <div class="flex-1 max-w-xl sm:max-w-2xl md:max-w-3xl mx-auto text-center mt-8 sm:mt-12 md:mt-20">
+            <div class="flex justify-center mb-4 sm:mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" sm:width="34" sm:height="34" fill="#000000" class="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9">
                     <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
                 </svg>
-            <p class="text-4xl text-gray-600 leading-relaxed font mb-4">
+            </div>
+            <p class="text-2xl sm:text-3xl md:text-4xl text-gray-600 leading-relaxed mb-6 sm:mb-8 px-4">
                 Under Maintainance!!!
             </p>
-            <a href="/home" class="mt-8 text-lg bg-black rounded-3xl px-4 py-2 text-white leading-relaxed ">
+            <a href="/home" class="inline-block mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg bg-black rounded-2xl sm:rounded-3xl px-4 sm:px-6 py-2 sm:py-3 text-white hover:bg-gray-800 transition-colors duration-200">
                 Back to Safety!
             </a>
         </div>
-
     </main>
 </Layout>
