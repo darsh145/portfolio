@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { motion, useAnimation, useMotionValue } from "framer-motion";
 
 const getRotationTransition = (duration, from, loop = true) => ({
@@ -20,7 +20,7 @@ const getTransition = (duration, from) => ({
 });
 
 const CircularText = ({
-  text,
+  text = "PRODUCT DESIGNER • UI/UX • ",
   spinDuration = 20,
   onHover = "speedUp",
   className = "",
@@ -85,25 +85,33 @@ const CircularText = ({
 
   return (
     <motion.div
-      className={`m-0 mx-auto rounded-full relative text-black font-bold text-center cursor-pointer origin-center ${className}`}
+      className={`m-0 mx-auto rounded-full relative text-black font-bold text-center cursor-pointer origin-center bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm ${className}`}
       style={{ rotate: rotation }}
-      initial={{ rotate: 0 }}
-      animate={controls}
+      initial={{ rotate: 0, opacity: 0 }}
+      animate={{ ...controls, opacity: 1 }}
       onMouseEnter={handleHoverStart}
       onMouseLeave={handleHoverEnd}
     >
       {letters.map((letter, i) => {
         const rotationDeg = (360 / letters.length) * i;
-        const factor = Math.PI / letters.length;
-        const x = factor * i;
-        const y = factor * i;
-        const transform = `rotateZ(${rotationDeg}deg) translate3d(${x}px, ${y}px, 0)`;
+        const radius = 45; // Fixed radius for better positioning
+        const x = Math.cos((rotationDeg * Math.PI) / 180) * radius;
+        const y = Math.sin((rotationDeg * Math.PI) / 180) * radius;
+        const transform = `translate(${x}px, ${y}px) rotate(${
+          rotationDeg + 90
+        }deg)`;
 
         return (
           <span
             key={i}
-            className="absolute inline-block inset-0 text-sm sm:text-base md:text-lg font-bold text-black transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
-            style={{ transform, WebkitTransform: transform }}
+            className="absolute text-xs md:text-sm font-bold text-black select-none"
+            style={{
+              transform,
+              WebkitTransform: transform,
+              left: "50%",
+              top: "50%",
+              transformOrigin: "center",
+            }}
           >
             {letter}
           </span>
