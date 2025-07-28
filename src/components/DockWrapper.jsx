@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Dock from "./dock.jsx";
 
 export default function DockWrapper() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const items = [
     {
       icon: (
@@ -85,9 +91,24 @@ export default function DockWrapper() {
     },
   ];
 
-  if (typeof window === "undefined") {
-    // Return null during SSR to prevent hydration mismatches
-    return null;
+  // Prevent hydration mismatch by only rendering the dock on the client
+  if (!isClient) {
+    return (
+      <div
+        className="mx-2 flex max-w-full items-center justify-center"
+        style={{ height: "68px", minWidth: "200px" }}
+      >
+        {/* Static placeholder during SSR */}
+        <div className="flex gap-2">
+          {[1, 2, 3, 4].map((i) => (
+            <div
+              key={i}
+              className="h-12 w-12 animate-pulse rounded-lg bg-gray-200"
+            />
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
