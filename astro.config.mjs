@@ -11,7 +11,8 @@ export default defineConfig({
     }),
   ],
   output: "static",
-  site: "https://portfolio-3ptx.onrender.com",
+  site: "https://USERNAME.github.io", // Replace USERNAME with your GitHub username
+  base: "/REPOSITORY_NAME", // Replace REPOSITORY_NAME with your repo name (or remove if repo name is USERNAME.github.io)
   build: {
     inlineStylesheets: "auto",
   },
