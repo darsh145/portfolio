@@ -11,8 +11,7 @@ export default defineConfig({
     }),
   ],
   output: "static",
-  site: "https://USERNAME.github.io", // Replace USERNAME with your GitHub username
-  base: "/REPOSITORY_NAME", // Replace REPOSITORY_NAME with your repo name (or remove if repo name is USERNAME.github.io)
+  site: "https://your-vercel-domain.vercel.app", // Update this with your actual Vercel domain
   build: {
     inlineStylesheets: "auto",
   },
