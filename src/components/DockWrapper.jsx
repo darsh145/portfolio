@@ -62,7 +62,7 @@ export default function DockWrapper() {
       label: "Resume",
       onClick: () => {
         const resumeWindow = window.open(
-          "./Darsh_Resume.pdf",
+          "/Darsh_Resume.pdf",
           "Resume",
           "width=800,height=1000,left=100,top=100,resizable=yes,scrollbars=yes,toolbar=yes,menubar=no,location=no,directories=no,status=yes"
         );
