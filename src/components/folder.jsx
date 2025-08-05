@@ -91,9 +91,9 @@ const Folder = ({
   };
 
   return (
-    <div style={scaleStyle} className={className}>
+    <div style={scaleStyle} className={`folder-component ${className}`}>
       <div
-        className={`group relative transition-all duration-200 ease-in cursor-pointer ${
+        className={`custom-folder group relative transition-all duration-200 ease-in cursor-pointer ${
           !open ? "hover:-translate-y-2" : ""
         }`}
         style={{

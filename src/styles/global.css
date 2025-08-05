@@ -1,20 +1,39 @@
 @import url("https://fonts.googleapis.com/css2?family=Reenie+Beanie&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Global cursor style to hide all default cursors */
-*,
-*::before,
-*::after,
-a,
-button,
-input[type="button"],
-input[type="submit"],
-select,
-[role="button"],
-[onclick],
-label[for] {
+/* Global cursor style to hide all default cursors, but exclude dock elements */
+*:not([role="button"]):not([role="toolbar"]):not(.dock-item):not(.dock-wrapper),
+*::before:not([role="button"]):not([role="toolbar"]):not(.dock-item):not(
+    .dock-wrapper
+  ),
+*::after:not([role="button"]):not([role="toolbar"]):not(.dock-item):not(
+    .dock-wrapper
+  ),
+a:not(.dock-item),
+button:not(.dock-item),
+input[type="button"]:not(.dock-item),
+input[type="submit"]:not(.dock-item),
+select:not(.dock-item),
+[onclick]:not(.dock-item),
+label[for]:not(.dock-item) {
   cursor: none !important;
+}
+
+/* Make cursor none for folder and dock components */
+[role="button"],
+[role="toolbar"],
+.dock-item,
+.dock-wrapper,
+.custom-folder,
+.folder-component {
+  cursor: none !important;
+}
+
+/* Additional styles to ensure dock visibility */
+.dock-wrapper {
+  position: relative;
+  z-index: 1000;
 }

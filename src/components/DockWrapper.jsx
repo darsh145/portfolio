@@ -95,7 +95,7 @@ export default function DockWrapper() {
   if (!isClient) {
     return (
       <div
-        className="mx-2 flex max-w-full items-center justify-center"
+        className="dock-wrapper mx-2 flex max-w-full items-center justify-center"
         style={{ height: "68px", minWidth: "200px" }}
       >
         {/* Static placeholder during SSR */}
@@ -112,6 +112,13 @@ export default function DockWrapper() {
   }
 
   return (
-    <Dock items={items} panelHeight={68} baseItemSize={50} magnification={70} />
+    <div className="dock-wrapper">
+      <Dock
+        items={items}
+        panelHeight={68}
+        baseItemSize={50}
+        magnification={70}
+      />
+    </div>
   );
 }
