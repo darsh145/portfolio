@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import CardSwap from "@/components/CardSwap"
+import { Card } from "@/components/CardSwap"
 ---
 
 <Layout>
     <main class="container mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
         <div class="mb-4 sm:mb-6">
-            <a href="/home" class="inline-flex items-center px-2 py-2 bg-gray-200 hover:bg-gray-300 text-white rounded-[50%] transition-colors duration-200 back-button">
+            <a href="/home" class="inline-flex items-center px-2 py-2 bg-gray-200 hover:bg-[#00bbff40] text-white rounded-[50%] transition-colors duration-200 back-button cursor-none">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" height="20" width="20" sm:height="24" sm:width="24" fill="#000000">
                     <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                 </svg>
@@ -13,23 +15,222 @@ import Layout from "../layouts/Layout.astro"
         </div>
 
         <div class="mt-4 sm:mt-6 md:mt-8">
-            <h2 class="flex justify-center text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-600 font-reenie px-4">
+            <h2 class="flex justify-center text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-700 font-reenie px-4">
                 You Dream It. I Design It. You Take All the Credit !!
             </h2>	
         </div>
 
         <!-- Single Column Portfolio Projects -->
         <div class="mt-8 sm:mt-12 md:mt-16 flex flex-col gap-6 sm:gap-8 md:gap-12 max-w-6xl mx-auto">
-            <!-- Project 1 -->
-            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
-                <div class="w-full lg:w-1/2 overflow-hidden rounded-lg sm:rounded-xl">
-                    <img src="/projects/chime.png" alt="UI/UX Design System" class="w-full h-48 sm:h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105">
+
+
+
+            <!-- Project 1 (bento display) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/Bento-Display.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
                 </div>
-                <div class="w-full lg:w-1/2 flex flex-col justify-center">
-                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Chime Music App</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Chime delivers a seamless music experience across desktop and mobile with bold visuals, personalized playlists, and a clean, immersive UI that keeps the vibe alive wherever you go.</p>
-                    <a href="https://www.behance.net/gallery/225629481/Chime-Music-UI-Design" class="inline-flex items-center px-3 sm:px-4 py-2 bg-red-200 hover:bg-red-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
-                        View Project
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">The White Mess That Taught Me Spacing</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">This dashboard started with nothing but curiosity. I stumbled upon an all-white layout and thought, why not try it? Soon, I found myself drowning in white-on-white components and random bento cards that didn’t even make sense together. But that chaos taught me a lot, how to handle spacing, layering, and subtle shade variations when everything looks the same. It’s not perfect, but it’s the one that made me obsessed with balance.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.figma.com/design/djyFQPDmNcYkV7LbUzJMqC/practice?node-id=62-68&t=vphRBnQZiqMoA7aR-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-gray-200 hover:bg-gray-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Figma
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <a href="https://jitter.video/file/?id=sMy0SFJzG2ZW3thz7Evn5lr6&nodeId=ama7YjEwTL-rRpBbgVW_7&source=share_button" class="inline-flex items-center px-3 sm:px-4 py-2 bg-gray-200 hover:bg-gray-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                       Jitter
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 (payment cards) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/Payment-confirm (1).json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                        <dotlottie-player 
+                            src="/animations/Payment-processing.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                        <dotlottie-player 
+                            src="/animations/Review-&-pay.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">Swipe, Wait, Done.</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">This one came out of a random scroll session. I saw a sleek payment flow and thought, I could make that move. So I did. Three screens: review, processing, confirmation. Simple on paper, but for me, it was all about the micro stuff, the tiny motions, the subtle animations that make you feel the flow. I built it just to play, to see how much personality I could pack into those few seconds of transition.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.figma.com/design/djyFQPDmNcYkV7LbUzJMqC/practice?node-id=1-2&t=vphRBnQZiqMoA7aR-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-orange-200 hover:bg-orange-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Figma
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <a href="https://jitter.video/file/?id=sMy0SFJzG2ZW3thz7Evn5lr6&source=share_button" class="inline-flex items-center px-3 sm:px-4 py-2 bg-orange-200 hover:bg-orange-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                       Jitter
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 (notes) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/notes.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">The Random One Everyone Liked</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">I wasn’t planning this at all, just saw a notes app concept and thought, looks fun, let’s make it. No big idea, no goal, just a random spark that turned into an onboarding flow. Funny thing? This one got the most love. Guess sometimes the things you do without overthinking end up hitting right.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.figma.com/design/djyFQPDmNcYkV7LbUzJMqC/practice?node-id=16-131&t=vphRBnQZiqMoA7aR-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-200 hover:bg-purple-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Figma
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <a href="https://jitter.video/file/?id=sMy0SFJzG2ZW3thz7Evn5lr6&source=share_button" class="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-200 hover:bg-purple-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                       Jitter
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 (nutrition-plans) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/nutrition-plans.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">The Prove-It Screen</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">Someone once said pulling off minimal gradients is tricky. I took that personally. So I designed this nutrition app onboarding just to prove I could make something clean, sleek, and subtle without breaking a sweat. No overdone colors, no clutter just quiet confidence in pixels.</p>
+
+                    <div class="flex gap-4">
+                        <a href="https://www.figma.com/design/djyFQPDmNcYkV7LbUzJMqC/practice?node-id=1-257&t=vphRBnQZiqMoA7aR-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-orange-200 hover:bg-orange-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Figma
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <a href="https://jitter.video/file/?id=sMy0SFJzG2ZW3thz7Evn5lr6&source=share_button" class="inline-flex items-center px-3 sm:px-4 py-2 bg-orange-200 hover:bg-orange-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                       Jitter
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 (otp verify) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/otp-verify.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">My First Motion Experiment</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">This little OTP verify screen is part of a bigger app, but it deserves its own spot. Why? Because it was the first time I played with motion in a design. Yeah, it’s not perfect maybe not the cleanest but that first taste of animation taught me so much. Had to include it; you can’t hide your first steps.</p>
+                    <div class="flex gap-4">
+                        <a href="https://www.figma.com/design/djyFQPDmNcYkV7LbUzJMqC/practice?node-id=37-67&t=vphRBnQZiqMoA7aR-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-green-200 hover:bg-green-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Figma
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                        <a href="https://jitter.video/file/?id=sMy0SFJzG2ZW3thz7Evn5lr6&nodeId=ama7YjEwTL-rRpBbgVW_7&source=share_button" class="inline-flex items-center px-3 sm:px-4 py-2 bg-green-200 hover:bg-green-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                            Jitter
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 (liveasy) -->
+            <div class="projectone flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-10 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+                <div class="w-full lg:w-1/2 h-48 sm:h-64 lg:h-80 relative overflow-hidden rounded-lg flex items-center justify-center">
+                    <div class="w-full h-full flex items-center justify-center">
+                        <dotlottie-player 
+                            src="/animations/liveasy.json" 
+                            background="transparent" 
+                            speed="1" 
+                            style="width: 100%; height: 100%;" 
+                            loop 
+                            autoplay>
+                        </dotlottie-player>
+                    </div>
+                </div>
+                <div class="w-full lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-800">The Task That Went Silent</h3>
+                    <p class="text-sm sm:text-base text-gray-800 leading-relaxed">This was a design task for a logistics company part of an interview challenge. They asked me to revamp their webpage, and I did, putting everything I knew into it back then. It was early in my design days, but I was proud of how clean and functional it turned out. They said they’d review it… and then never replied. Still don’t know if they didn’t like it or just took the work and moved on. Either way, it taught me one thing sometimes silence is just part of the process.</p>
+                    <a href="https://www.figma.com/design/LDb5KkE4z36mpC2IX9UgaP/liveasy_task--Copy-?node-id=0-1&t=JYJPQ4xAuLiut6sV-1" class="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-200 hover:bg-blue-400 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base cursor-none">
+                        Figma
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                         </svg>
@@ -37,14 +238,20 @@ import Layout from "../layouts/Layout.astro"
                 </div>
             </div>
 
-            <!-- Project 2 -->
+            <div class="flex-shrink-0 mt-2 sm:mt-4">
+                <h2 class="flex justify-center text-center text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 font-reenie px-4">
+                    I really appreciate you for scrolling this far, love that you took the time to check out my work. You’ll find a few old projects below too, from when I was just starting out, so go easy on them :)
+                </h2>	
+		    </div>
+
+            <!-- coinview -->
             <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
                 <div class="w-full lg:w-1/2 overflow-hidden rounded-lg sm:rounded-xl">
                     <img src="/projects/coinview.png" alt="Coinview Project" class="w-full h-48 sm:h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105">
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Coinview</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">A cryptocurrency dashboard designed to track market movements and portfolio performance with intuitive analytics.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">A cryptocurrency dashboard designed to track market movements and portfolio performance with intuitive analytics.</p>
                     <a href="https://www.behance.net/gallery/222545783/CoinView-A-Finance-Dashboard-for-Crypto-Investors" class="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-200 hover:bg-blue-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -61,7 +268,7 @@ import Layout from "../layouts/Layout.astro"
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Resido UX</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Designed platform MVP for Resido, a home services platform offering repairs, cleaning, installations, and more—focused on intuitive UX, fast bookings, and seamless user flow across web and app.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">Designed platform MVP for Resido, a home services platform offering repairs, cleaning, installations, and more—focused on intuitive UX, fast bookings, and seamless user flow across web and app.</p>
                     <a href="https://www.behance.net/gallery/222801375/RESIDO-UX-Study-Product-Design" class="inline-flex items-center px-3 sm:px-4 py-2 bg-[#0078FF50] hover:bg-[#0078FF80] text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -71,14 +278,14 @@ import Layout from "../layouts/Layout.astro"
                 </div>
             </div>
 
-            <!-- Project 3 -->
+            <!-- watch ui -->
             <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
                 <div class="w-full lg:w-1/2 overflow-hidden rounded-lg sm:rounded-xl">
                     <img src="/projects/watchui.png" alt="WatchUI Project" class="w-full h-48 sm:h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105">
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">WatchUI</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">A smartwatch interface design with a focus on minimalism and usability for health and fitness tracking.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">A smartwatch interface design with a focus on minimalism and usability for health and fitness tracking.</p>
                     <a href="https://www.behance.net/gallery/221988817/Watch-OS-UI" class="inline-flex items-center px-3 sm:px-4 py-2 bg-orange-200 hover:bg-orange-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -89,7 +296,7 @@ import Layout from "../layouts/Layout.astro"
             </div>
 
             <!-- Project 4 -->
-            <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
+            <!-- <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
                 <div class="w-full lg:w-1/2 overflow-hidden rounded-lg sm:rounded-xl">
                     <img src="/projects/liveasy.png" alt="Liveasy Project" class="w-full h-48 sm:h-64 md:h-full object-cover transition-transform duration-500 group-hover:scale-105">
                 </div>
@@ -103,7 +310,7 @@ import Layout from "../layouts/Layout.astro"
                         </svg>
                     </a>
                 </div>
-            </div>
+            </div> -->
 
             <!-- Project 5 -->
             <div class="flex flex-col lg:flex-row gap-4 sm:gap-6 rounded-2xl sm:rounded-3xl overflow-hidden group bento-item p-4 sm:p-6 bg-gray-50 shadow-sm transition-all duration-300">
@@ -112,7 +319,7 @@ import Layout from "../layouts/Layout.astro"
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Taskly</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">A productivity app with intuitive task management features, calendar integration, and progress tracking.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">A productivity app with intuitive task management features, calendar integration, and progress tracking.</p>
                     <a href="https://www.behance.net/gallery/222037437/task-manager-mobile-ui" class="inline-flex items-center px-3 sm:px-4 py-2 bg-gray-200 hover:bg-gray-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -129,7 +336,7 @@ import Layout from "../layouts/Layout.astro"
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Expense Tracker</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">A sleek, intuitive watch UI that turns financial tracking into a real-time, on-wrist experience with monitor balances, manage spendings, and crush savings goals effortlessly.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">A sleek, intuitive watch UI that turns financial tracking into a real-time, on-wrist experience with monitor balances, manage spendings, and crush savings goals effortlessly.</p>
                     <a href="https://www.behance.net/gallery/219948859/Watch-UI" class="inline-flex items-center px-3 sm:px-4 py-2 bg-purple-200 hover:bg-purple-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -146,7 +353,7 @@ import Layout from "../layouts/Layout.astro"
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Verdor</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">A Plant care platform designed for sustainable and eco-friendly caring for your green buddies with ethical sourcing information.</p>
+                    <p class="text-sm sm:text-base text-gray-800 mb-4 sm:mb-6 leading-relaxed">A Plant care platform designed for sustainable and eco-friendly caring for your green buddies with ethical sourcing information.</p>
                     <div class="flex gap-4">
                     <a href="https://www.behance.net/gallery/225196511/Verdor-Plant-App" class="inline-flex items-center px-3 sm:px-4 py-2 bg-green-200 hover:bg-green-300 text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
@@ -171,7 +378,7 @@ import Layout from "../layouts/Layout.astro"
                 </div>
                 <div class="w-full lg:w-1/2 flex flex-col justify-center">
                     <h3 class="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3">Fallout Clothing</h3>
-                    <p class="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 leading-relaxed">Fallout blends pixel nostalgia with bold minimalism and redefining streetwear shopping through an interactive, style-first digital storefront made for the trendsetters.</p>
+                    <p class="text-sm sm:text-base text-gray-700 mb-4 sm:mb-6 leading-relaxed">Fallout blends pixel nostalgia with bold minimalism and redefining streetwear shopping through an interactive, style-first digital storefront made for the trendsetters.</p>
                     <a href="https://www.behance.net/gallery/219239721/Fallout-Project" class="inline-flex items-center px-3 sm:px-4 py-2 bg-[#00bbff40] hover:bg-[#00bbff80] text-black rounded-lg transition-colors duration-200 max-w-max text-sm sm:text-base">
                         View Project
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -180,6 +387,11 @@ import Layout from "../layouts/Layout.astro"
                     </a>
                 </div>
             </div>
+            <div class="flex-shrink-0 mt-2 sm:mt-4">
+			<h2 class="flex justify-center text-center text-xl sm:text-2xl md:text-3xl font-bold text-gray-700 font-reenie transform rotate-[-8deg] px-4">
+				EOD (End of Design) :)
+			</h2>	
+		</div>
         </div>
     </main>
 </Layout>
