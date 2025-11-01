@@ -4,18 +4,64 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout>
     <main class="container mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8">
-        <div class="flex-1 max-w-xl sm:max-w-2xl md:max-w-3xl mx-auto text-center mt-8 sm:mt-12 md:mt-20">
-            <div class="flex justify-center mb-4 sm:mb-6">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="28" height="28" sm:width="34" sm:height="34" fill="#000000" class="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9">
-                    <path d="M256 32c14.2 0 27.3 7.5 34.5 19.8l216 368c7.3 12.4 7.3 27.7 .2 40.1S486.3 480 472 480L40 480c-14.3 0-27.6-7.7-34.7-20.1s-7-27.8 .2-40.1l216-368C228.7 39.5 241.8 32 256 32zm0 128c-13.3 0-24 10.7-24 24l0 112c0 13.3 10.7 24 24 24s24-10.7 24-24l0-112c0-13.3-10.7-24-24-24zm32 224a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/>
+        <div class="mb-4 sm:mb-6">
+            <a href="/home" class="inline-flex items-center px-2 py-2 bg-gray-200 hover:bg-[#00bbff40] text-white rounded-[50%] transition-colors duration-200 back-button cursor-none">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="h-5 w-5 sm:h-6 sm:w-6" fill="#000000">
+                    <path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.2 288 416 288c17.7 0 32-14.3 32-32s-14.3-32-32-32l-306.7 0L214.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z"/>
                 </svg>
-            </div>
-            <p class="text-2xl sm:text-3xl md:text-4xl text-gray-600 leading-relaxed mb-6 sm:mb-8 px-4">
-                Under Maintainance!!!
-            </p>
-            <a href="/home" class="inline-block mt-4 sm:mt-6 md:mt-8 text-base sm:text-lg bg-black rounded-2xl sm:rounded-3xl px-4 sm:px-6 py-2 sm:py-3 text-white hover:bg-gray-800 transition-colors duration-200">
-                Back to Safety!
             </a>
+        </div>
+
+        <div class="mt-4 sm:mt-6 md:mt-8 mb-8">
+            <h2 class="flex justify-center text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-600 font-reenie px-4">
+                Behind the Scenes & Random Thoughts
+            </h2>	
+        </div>
+
+        <!-- Sticky Scroll Content -->
+        <div class="relative flex h-[30rem] justify-center space-x-10 overflow-y-auto rounded-md p-10 bg-white-900">
+            <div class="relative flex items-start px-4">
+                <div class="max-w-2xl">
+                    <div class="my-20">
+                        <h2 class="text-2xl font-bold text-black">Design Philosophy</h2>
+                        <p class="text-lg mt-10 max-w-sm text-black-300"> 
+                            I believe in creating designs that tell stories. Every pixel has a purpose, every interaction should feel natural, and every user should leave with a smile.
+                        </p>
+                    </div>
+                    <div class="my-20">
+                        <h2 class="text-2xl font-bold text-slate-100">Creative Process</h2>
+                        <p class="text-lg mt-10 max-w-sm text-slate-300">
+                            From chaos comes clarity. I start with wild ideas, sketch endlessly, prototype rapidly, and refine obsessively until the design feels just right.
+                        </p>
+                    </div>
+                    <div class="my-20">
+                        <h2 class="text-2xl font-bold text-slate-100">Tools & Technology</h2>
+                        <p class="text-lg mt-10 max-w-sm text-slate-300">
+                            Figma for design, Framer for prototypes, and a healthy dose of coffee for fuel. I stay updated with the latest design trends and emerging technologies.
+                        </p>
+                    </div>
+                    <div class="h-40"></div>
+                </div>
+            </div>
+            <div class="sticky top-10 hidden h-60 w-80 overflow-hidden rounded-md bg-gradient-to-br from-cyan-500 to-emerald-500 lg:block">
+                <div class="h-full w-full flex items-center justify-center text-white">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-4">Creative Vision</h3>
+                        <p class="text-lg">Where art meets functionality</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </Layout>
+
+<style>
+    .font-reenie {
+        font-family: 'Reenie Beanie', cursive;
+    }
+
+    .back-button {
+        position: relative;
+        overflow: hidden;
+    }
+</style>
