@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import {Pagination} from "@heroui/react";
 ---
 
 <Layout>
@@ -15,6 +16,12 @@ import Layout from "../layouts/Layout.astro";
         <div class="mt-4 sm:mt-6 md:mt-8 mb-8">
             <h2 class="flex justify-center text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-600 font-reenie px-4">
                 Behind the Scenes & Random Thoughts
+            </h2>	
+        </div>
+
+        <div class="mt-4 sm:mt-6 md:mt-8 mb-8">
+            <h2 class="flex justify-center text-center text-2xl sm:text-3xl md:text-4xl font-bold text-gray-600 font-reenie px-4">
+                <Pagination initialPage={1} total={8} />;
             </h2>	
         </div>
 
