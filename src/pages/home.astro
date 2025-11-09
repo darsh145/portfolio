@@ -63,4 +63,84 @@ import CircularText from '../components/CircularText.jsx';
     .font-reenie {
         font-family: 'Reenie Beanie', cursive;
     }
+
+    /* Ensure main container has proper spacing for dock */
+    main {
+        padding-bottom: 120px; /* Increased space for dock on mobile */
+    }
+
+    /* Make sure folders are touchable and properly spaced */
+    .flex.flex-col.sm\\:flex-col.md\\:flex-row {
+        gap: 1rem;
+        padding: 0 1rem;
+        margin-bottom: 2rem; /* Extra margin to prevent overlap */
+    }
+
+    /* Ensure all folder links are touchable */
+    a[href="/collaborate"],
+    a[href="/service"],
+    a[href="/work"],
+    a[href="/extras"] {
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        padding: 0.5rem;
+        min-height: 120px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        z-index: 10; /* Ensure folders are above other elements */
+    }
+
+    /* Active state for touch feedback */
+    a[href="/collaborate"]:active,
+    a[href="/service"]:active,
+    a[href="/work"]:active,
+    a[href="/extras"]:active {
+        transform: scale(0.95);
+        opacity: 0.8;
+    }
+
+    /* Ensure dock doesn't overlap folders */
+    .absolute.bottom-4 {
+        position: fixed !important;
+        bottom: 1rem !important;
+        z-index: 50;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 640px) {
+        main {
+            padding-bottom: 140px; /* More space on small screens */
+        }
+
+        .flex.flex-col.sm\\:flex-col.md\\:flex-row {
+            gap: 0.75rem;
+        }
+        
+        /* Ensure last folder (Let's Collab) has enough space */
+        a[href="/collaborate"] {
+            margin-bottom: 1rem;
+        }
+    }
+
+    @media (min-width: 641px) and (max-width: 768px) {
+        main {
+            padding-bottom: 100px;
+        }
+    }
+
+    @media (min-width: 769px) {
+        main {
+            padding-bottom: 80px;
+        }
+    }
+
+    /* Very small screens */
+    @media (max-height: 600px) {
+        main {
+            padding-bottom: 160px;
+        }
+    }
 </style>
