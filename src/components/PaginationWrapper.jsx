@@ -237,7 +237,7 @@ export default function PaginationWrapper() {
           <h3 className="font-bold text-lg text-gray-700 mb-3">Reflection</h3>
           <p className="text-gray-600 leading-relaxed">
             This project helped me merge UX design with hardware interaction,
-            pushing me to think beyond screens — about how real-world motion
+            pushing me to think beyond screens, about how real-world motion
             translates to digital feedback.
           </p>
         </div>
@@ -286,7 +286,7 @@ export default function PaginationWrapper() {
             <div>
               <span className="font-semibold text-gray-600">Goal:</span>
               <span className="text-gray-800 ml-2">
-                Redefine GAIA’s identity and user experience from a cluttered AI
+                Redefine GAIA's identity and user experience from a cluttered AI
                 concept to a focused, lovable automation ecosystem.
               </span>
             </div>
@@ -319,7 +319,7 @@ export default function PaginationWrapper() {
             </p>
 
             <h4 className="font-semibold text-gray-700 mb-3">
-              My goal was to redesign GAIA’s identity, interface, and
+              My goal was to redesign GAIA's identity, interface, and
               communication so users immediately understood what it does, how it
               helps, and why it matters.
             </h4>
@@ -348,7 +348,7 @@ export default function PaginationWrapper() {
             <li>Must have: Core automation workflows</li>
             <li>Should have: Integrations with popular tools</li>
             <li>Could have: Visual customizations and user personalization</li>
-            <li>Won’t have (yet): Experimental AI features</li>
+            <li>Won't have (yet): Experimental AI features</li>
           </ol>
         </div>
         <br />
@@ -361,7 +361,7 @@ export default function PaginationWrapper() {
             visuals. While it was informative, it overwhelmed visitors and
             failed to convert interest into engagement. We reframed the landing
             strategy from: <br />
-            “Here’s what GAIA does” → to → “Here’s how GAIA helps you.”
+            "Here's what GAIA does" → to → "Here's how GAIA helps you."
           </p>
           <p className="text-large font-bold text-gray-600 mt-4 mb-2">
             The new design focuses on:
@@ -371,7 +371,7 @@ export default function PaginationWrapper() {
             <li>Minimal feature showcasing</li>
             <li>Emotionally engaging microanimations</li>
             <li>Simple, relatable use cases</li>
-            <li>A friendly tone that matches GAIA’s personality</li>
+            <li>A friendly tone that matches GAIA's personality</li>
           </ol>
         </div>
         <br />
@@ -388,7 +388,7 @@ export default function PaginationWrapper() {
           </h3>
           <p className="text-gray-600 leading-relaxed mb-1">
             I designed reusable UI components and created microanimations that
-            reflected GAIA’s responsive and intelligent nature, small visual
+            reflected GAIA's responsive and intelligent nature, small visual
             cues that made interactions feel more alive and conversational.
           </p>
         </div>
@@ -405,7 +405,7 @@ export default function PaginationWrapper() {
             <li>Multiple rough sketches</li>
             <li>Iterations exploring tone (friendly yet techy)</li>
             <li>
-              Refining colors, typography, and style to fit GAIA’s identity
+              Refining colors, typography, and style to fit GAIA's identity
             </li>
           </ol>
         </div>
@@ -421,11 +421,11 @@ export default function PaginationWrapper() {
           <h3 className="font-bold text-lg text-gray-700 mb-3">Impact</h3>
           <ol className="list-decimal ml-6 space-y-2 text-gray-600">
             <li>
-              Simplified the user journey and made GAIA’s purpose immediately
+              Simplified the user journey and made GAIA's purpose immediately
               clear.
             </li>
             <li>
-              Improved landing page engagement — users now understood GAIA’s
+              Improved landing page engagement — users now understood GAIA's
               benefits within seconds.
             </li>
             <li>
@@ -453,8 +453,8 @@ export default function PaginationWrapper() {
             </li>
           </ol>
           <p className="text-gray-600 leading-relaxed">
-            GAIA reminded me that great UX isn’t about showing everything a
-            product can do — it’s about helping users see what it can do for
+            GAIA reminded me that great UX isn't about showing everything a
+            product can do — it's about helping users see what it can do for
             them.
           </p>
         </div>
@@ -466,15 +466,23 @@ export default function PaginationWrapper() {
   );
 
   return (
-    <>
+    <div className="w-full">
       <div className="mt-4 sm:mt-6 md:mt-8 mb-8">
         <div className="flex justify-center text-center px-4">
-          <Pagination
-            initialPage={1}
-            total={8}
-            page={currentPage}
-            onChange={setCurrentPage}
-          />
+          <div
+            className="inline-block"
+            style={{
+              touchAction: "manipulation",
+              WebkitTapHighlightColor: "transparent",
+            }}
+          >
+            <Pagination
+              initialPage={1}
+              total={8}
+              page={currentPage}
+              onChange={setCurrentPage}
+            />
+          </div>
         </div>
       </div>
 
@@ -485,13 +493,6 @@ export default function PaginationWrapper() {
             {/* Conditionally render content based on current page */}
             {currentPage === 1 && <ProjectContent />}
             {currentPage === 2 && <ProjectContent2 />}
-            {/* Add more pages as needed */}
-            {/* {currentPage === 3 && <ProjectContent />}
-            {currentPage === 4 && <ProjectContent />}
-            {currentPage === 5 && <ProjectContent />}
-            {currentPage === 6 && <ProjectContent />}
-            {currentPage === 7 && <ProjectContent />}
-            {currentPage === 8 && <ProjectContent />} */}
           </div>
         </div>
 
@@ -511,50 +512,50 @@ export default function PaginationWrapper() {
               className="w-full h-full object-cover"
             />
           )}
-          {/* {currentPage === 3 && (
-            <img
-              src="/your-project-3-image.png"
-              alt="Project 3"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {currentPage === 4 && (
-            <img
-              src="/your-project-4-image.png"
-              alt="Project 4"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {currentPage === 5 && (
-            <img
-              src="/your-project-5-image.png"
-              alt="Project 5"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {currentPage === 6 && (
-            <img
-              src="/your-project-6-image.png"
-              alt="Project 6"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {currentPage === 7 && (
-            <img
-              src="/your-project-7-image.png"
-              alt="Project 7"
-              className="w-full h-full object-cover"
-            />
-          )}
-          {currentPage === 8 && (
-            <img
-              src="/your-project-8-image.png"
-              alt="Project 8"
-              className="w-full h-full object-cover"
-            />
-          )} */}
         </div>
       </div>
-    </>
+
+      <style jsx>{`
+        :global(.projectcontent::-webkit-scrollbar) {
+          display: none;
+        }
+
+        /* Enhanced touch support for pagination */
+        :global([role="navigation"]) {
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Increase touch target size for mobile */
+        :global([role="navigation"] button),
+        :global([role="navigation"] a) {
+          min-width: 44px !important;
+          min-height: 44px !important;
+          touch-action: manipulation;
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+          cursor: pointer;
+        }
+
+        /* Better visual feedback on touch */
+        :global([role="navigation"] button:active),
+        :global([role="navigation"] a:active) {
+          transform: scale(0.95);
+          transition: transform 0.1s ease;
+        }
+
+        /* Improve spacing on mobile for easier touch */
+        @media (max-width: 640px) {
+          :global([role="navigation"] ul) {
+            gap: 0.75rem !important;
+          }
+
+          :global([role="navigation"] button),
+          :global([role="navigation"] a) {
+            padding: 0.75rem !important;
+            font-size: 1rem !important;
+          }
+        }
+      `}</style>
+    </div>
   );
 }
