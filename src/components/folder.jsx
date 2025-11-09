@@ -22,7 +22,7 @@ const darkenColor = (hex, percent) => {
 };
 
 const Folder = ({
-  color = "#00d8ff",
+  color = "#5227FF",
   size = 1,
   items = [],
   className = "",
@@ -34,6 +34,7 @@ const Folder = ({
   }
 
   const [open, setOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [paperOffsets, setPaperOffsets] = useState(
     Array.from({ length: maxItems }, () => ({ x: 0, y: 0 }))
   );
@@ -50,8 +51,19 @@ const Folder = ({
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (!open) {
+      setPaperOffsets(Array.from({ length: maxItems }, () => ({ x: 0, y: 0 })));
+    }
+  };
+
   const handlePaperMouseMove = (e, index) => {
-    if (!open) return;
+    if (!open && !isHovered) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
@@ -65,11 +77,13 @@ const Folder = ({
   };
 
   const handlePaperMouseLeave = (e, index) => {
-    setPaperOffsets((prev) => {
-      const newOffsets = [...prev];
-      newOffsets[index] = { x: 0, y: 0 };
-      return newOffsets;
-    });
+    if (!open && !isHovered) {
+      setPaperOffsets((prev) => {
+        const newOffsets = [...prev];
+        newOffsets[index] = { x: 0, y: 0 };
+        return newOffsets;
+      });
+    }
   };
 
   const folderStyle = {
@@ -80,7 +94,6 @@ const Folder = ({
     "--paper-3": paper3,
   };
 
-  // Outer scale style
   const scaleStyle = { transform: `scale(${size})` };
 
   const getOpenTransform = (index) => {
@@ -90,17 +103,27 @@ const Folder = ({
     return "";
   };
 
+  const getHoverTransform = (index) => {
+    // Subtle offset on hover (less dramatic than full open)
+    if (index === 0) return "translate(-50%, -30%) rotate(-8deg)";
+    if (index === 1) return "translate(20%, -30%) rotate(8deg)";
+    if (index === 2) return "translate(-15%, -40%) rotate(3deg)";
+    return "";
+  };
+
   return (
-    <div style={scaleStyle} className={`folder-component ${className}`}>
+    <div style={scaleStyle} className={className}>
       <div
-        className={`custom-folder group relative transition-all duration-200 ease-in cursor-pointer ${
-          !open ? "hover:-translate-y-2" : ""
+        className={`group relative transition-all duration-200 ease-in cursor-pointer ${
+          !open && !isHovered ? "hover:-translate-y-2" : ""
         }`}
         style={{
           ...folderStyle,
-          transform: open ? "translateY(-8px)" : undefined,
+          transform: open || isHovered ? "translateY(-8px)" : undefined,
         }}
         onClick={handleClick}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
       >
         <div
           className="relative w-[100px] h-[80px] rounded-tl-0 rounded-tr-[10px] rounded-br-[10px] rounded-bl-[10px]"
@@ -110,21 +133,26 @@ const Folder = ({
             className="absolute z-0 bottom-[98%] left-0 w-[30px] h-[10px] rounded-tl-[5px] rounded-tr-[5px] rounded-bl-0 rounded-br-0"
             style={{ backgroundColor: folderBackColor }}
           ></span>
-          {/* Render papers */}
           {papers.map((item, i) => {
             let sizeClasses = "";
             if (i === 0)
-              sizeClasses = open ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";
+              sizeClasses = open || isHovered ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";
             if (i === 1)
-              sizeClasses = open ? "w-[80%] h-[80%]" : "w-[80%] h-[70%]";
+              sizeClasses = open || isHovered ? "w-[80%] h-[80%]" : "w-[80%] h-[70%]";
             if (i === 2)
-              sizeClasses = open ? "w-[90%] h-[80%]" : "w-[90%] h-[60%]";
+              sizeClasses = open || isHovered ? "w-[90%] h-[80%]" : "w-[90%] h-[60%]";
 
-            const transformStyle = open
-              ? `${getOpenTransform(i)} translate(${paperOffsets[i].x}px, ${
-                  paperOffsets[i].y
-                }px)`
-              : undefined;
+            // Calculate transform based on state
+            let transformStyle;
+            if (open) {
+              // Full open state with mouse offset
+              transformStyle = `${getOpenTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`;
+            } else if (isHovered) {
+              // Hover state with mouse offset
+              transformStyle = `${getHoverTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`;
+            } else {
+              transformStyle = undefined;
+            }
 
             return (
               <div
@@ -132,12 +160,12 @@ const Folder = ({
                 onMouseMove={(e) => handlePaperMouseMove(e, i)}
                 onMouseLeave={(e) => handlePaperMouseLeave(e, i)}
                 className={`absolute z-20 bottom-[10%] left-1/2 transition-all duration-300 ease-in-out ${
-                  !open
+                  !open && !isHovered
                     ? "transform -translate-x-1/2 translate-y-[10%] group-hover:translate-y-0"
-                    : "hover:scale-110"
+                    : "hover:scale-105"
                 } ${sizeClasses}`}
                 style={{
-                  ...(!open ? {} : { transform: transformStyle }),
+                  ...(!open && !isHovered ? {} : { transform: transformStyle }),
                   backgroundColor: i === 0 ? paper1 : i === 1 ? paper2 : paper3,
                   borderRadius: "10px",
                 }}
@@ -148,22 +176,22 @@ const Folder = ({
           })}
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? "group-hover:[transform:skew(15deg)_scaleY(0.6)]" : ""
+              !open && !isHovered ? "group-hover:[transform:skew(15deg)_scaleY(0.6)]" : ""
             }`}
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open && { transform: "skew(15deg) scaleY(0.6)" }),
+              ...(open || isHovered ? { transform: "skew(15deg) scaleY(0.6)" } : {}),
             }}
           ></div>
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open ? "group-hover:[transform:skew(-15deg)_scaleY(0.6)]" : ""
+              !open && !isHovered ? "group-hover:[transform:skew(-15deg)_scaleY(0.6)]" : ""
             }`}
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open && { transform: "skew(-15deg) scaleY(0.6)" }),
+              ...(open || isHovered ? { transform: "skew(-15deg) scaleY(0.6)" } : {}),
             }}
           ></div>
         </div>
