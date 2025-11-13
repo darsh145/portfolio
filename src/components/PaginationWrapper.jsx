@@ -468,7 +468,7 @@ export default function PaginationWrapper() {
   return (
     <div className="w-full">
       <div className="mt-4 sm:mt-6 md:mt-8 mb-8">
-        <div className="flex justify-center text-center px-4">
+        <div className="flex justify-center text-center px-4 ">
           <div
             className="inline-block"
             style={{

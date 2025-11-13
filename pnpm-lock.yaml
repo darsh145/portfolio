@@ -20,6 +20,9 @@ importers:
       '@astrojs/vercel':
         specifier: ^8.1.4
         version: 8.1.4(astro@5.7.13(@types/node@22.15.18)(jiti@2.4.2)(lightningcss@1.29.2)(rollup@4.40.2)(typescript@5.8.3)(yaml@2.7.1))(react@19.1.0)(rollup@4.40.2)
+      '@heroui/modal':
+        specifier: ^2.2.24
+        version: 2.2.24(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@3.4.17))(framer-motion@12.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.23(tailwindcss@3.4.17))(framer-motion@12.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@heroui/pagination':
         specifier: ^2.2.24
         version: 2.2.24(@heroui/system@2.4.23(@heroui/theme@2.4.23(tailwindcss@3.4.17))(framer-motion@12.11.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(@heroui/theme@2.4.23(tailwindcss@3.4.17))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

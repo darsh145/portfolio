@@ -136,20 +136,27 @@ const Folder = ({
           {papers.map((item, i) => {
             let sizeClasses = "";
             if (i === 0)
-              sizeClasses = open || isHovered ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";
+              sizeClasses =
+                open || isHovered ? "w-[70%] h-[80%]" : "w-[70%] h-[80%]";
             if (i === 1)
-              sizeClasses = open || isHovered ? "w-[80%] h-[80%]" : "w-[80%] h-[70%]";
+              sizeClasses =
+                open || isHovered ? "w-[80%] h-[80%]" : "w-[80%] h-[70%]";
             if (i === 2)
-              sizeClasses = open || isHovered ? "w-[90%] h-[80%]" : "w-[90%] h-[60%]";
+              sizeClasses =
+                open || isHovered ? "w-[90%] h-[80%]" : "w-[90%] h-[60%]";
 
             // Calculate transform based on state
             let transformStyle;
             if (open) {
               // Full open state with mouse offset
-              transformStyle = `${getOpenTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`;
+              transformStyle = `${getOpenTransform(i)} translate(${
+                paperOffsets[i].x
+              }px, ${paperOffsets[i].y}px)`;
             } else if (isHovered) {
               // Hover state with mouse offset
-              transformStyle = `${getHoverTransform(i)} translate(${paperOffsets[i].x}px, ${paperOffsets[i].y}px)`;
+              transformStyle = `${getHoverTransform(i)} translate(${
+                paperOffsets[i].x
+              }px, ${paperOffsets[i].y}px)`;
             } else {
               transformStyle = undefined;
             }
@@ -176,22 +183,30 @@ const Folder = ({
           })}
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open && !isHovered ? "group-hover:[transform:skew(15deg)_scaleY(0.6)]" : ""
+              !open && !isHovered
+                ? "group-hover:[transform:skew(15deg)_scaleY(0.6)]"
+                : ""
             }`}
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open || isHovered ? { transform: "skew(15deg) scaleY(0.6)" } : {}),
+              ...(open || isHovered
+                ? { transform: "skew(15deg) scaleY(0.6)" }
+                : {}),
             }}
           ></div>
           <div
             className={`absolute z-30 w-full h-full origin-bottom transition-all duration-300 ease-in-out ${
-              !open && !isHovered ? "group-hover:[transform:skew(-15deg)_scaleY(0.6)]" : ""
+              !open && !isHovered
+                ? "group-hover:[transform:skew(-15deg)_scaleY(0.6)]"
+                : ""
             }`}
             style={{
               backgroundColor: color,
               borderRadius: "5px 10px 10px 10px",
-              ...(open || isHovered ? { transform: "skew(-15deg) scaleY(0.6)" } : {}),
+              ...(open || isHovered
+                ? { transform: "skew(-15deg) scaleY(0.6)" }
+                : {}),
             }}
           ></div>
         </div>
