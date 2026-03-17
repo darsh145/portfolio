@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AthlezTech — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.05);
+        --text: #f0ede8;
+        --muted: #888;
+        --accent: #c8f5d0;
+        --accent-dim: rgba(200, 245, 208, 0.1);
+        --accent-border: rgba(200, 245, 208, 0.2);
+        --max: 780px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .container::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(16px);
+        background: rgba(13, 13, 13, 0.85);
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+      .nav-back svg {
+        width: 14px;
+        height: 14px;
+      }
+      .nav-label {
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 9rem 2rem 5rem;
+        max-width: var(--max);
+        margin: 0 auto;
+        border-bottom: 1px solid var(--border);
+      }
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-border);
+        padding: 4px 12px;
+        border-radius: 2px;
+        margin-bottom: 1.75rem;
+      }
+      .hero h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.2rem, 6vw, 3.4rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--muted);
+      }
+      .hero-desc {
+        font-size: 17px;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1.75rem;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      /* ── LAYOUT ── */
+      .content {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 2rem 6rem;
+      }
+
+      /* ── SECTION ── */
+      section {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      section:last-child {
+        border-bottom: none;
+      }
+
+      .section-num {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-num::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+        display: block;
+      }
+      h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.25rem;
+      }
+      h3 {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 2rem 0 0.75rem;
+      }
+      p {
+        color: rgba(240, 237, 232, 0.75);
+        margin-bottom: 1rem;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ── PROBLEM / SOLUTION SPLIT ── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+      .two-col-cell {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .two-col-cell .cell-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .two-col-cell.problem .cell-label {
+        color: rgba(255, 120, 100, 0.7);
+      }
+      .two-col-cell.solution .cell-label {
+        color: var(--accent);
+      }
+      .two-col-cell p {
+        font-size: 14px;
+        color: rgba(240, 237, 232, 0.6);
+        margin: 0;
+      }
+
+      /* ── PILL LIST ── */
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 1.25rem 0;
+      }
+      .pill {
+        font-size: 13px;
+        font-weight: 400;
+        padding: 6px 14px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: rgba(240, 237, 232, 0.6);
+        background: var(--surface);
+        white-space: nowrap;
+      }
+      .pill.accent {
+        border-color: var(--accent-border);
+        color: var(--accent);
+        background: var(--accent-dim);
+      }
+
+      /* ── HIGHLIGHT BLOCK ── */
+      .highlight {
+        border-left: 2px solid var(--accent);
+        padding: 1.25rem 1.5rem;
+        background: var(--accent-dim);
+        border-radius: 0 6px 6px 0;
+        margin: 1.75rem 0;
+      }
+      .highlight p {
+        color: rgba(240, 237, 232, 0.8);
+        font-size: 15px;
+        margin: 0;
+      }
+
+      /* ── FEATURE CARDS ── */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 1.75rem 0;
+      }
+      .card {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .card-icon {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 15px;
+      }
+      .card h4 {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* ── OUTCOMES ── */
+      .outcomes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 1.75rem 0;
+      }
+      .outcome {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem;
+      }
+      .outcome-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .outcome p {
+        font-size: 13px;
+        color: rgba(240, 237, 232, 0.65);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* ── LEARNINGS ── */
+      .learnings {
+        counter-reset: learning;
+      }
+      .learning-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .learning-item:last-child {
+        border-bottom: none;
+      }
+      .learning-num {
+        font-family: "DM Serif Display", serif;
+        font-size: 2rem;
+        color: var(--border);
+        line-height: 1;
+        min-width: 2.5rem;
+        user-select: none;
+      }
+      .learning-text {
+        font-size: 15px;
+        color: rgba(240, 237, 232, 0.7);
+        padding-top: 4px;
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 3rem 2rem 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .footer-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .footer-nav {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-nav a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--text);
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 600px) {
+        nav {
+          padding: 1rem 1.25rem;
+        }
+        .hero {
+          padding: 7rem 1.25rem 3.5rem;
+        }
+        .content {
+          padding: 0 1.25rem 4rem;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .meta-row {
+          gap: 1.25rem;
+        }
+        .footer {
+          padding: 2.5rem 1.25rem 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="nav-label">AthlezTech — Case Study</span>
+    </nav>
+
+    <div class="hero">
+      <div class="tag">UX & Brand Design</div>
+      <h1>Designing <em>smarter</em><br />cricket training</h1>
+      <p class="hero-desc">
+        A mobile app for real-time cricket performance analytics, paired to a
+        smart wristband — built for grassroots players and coaches.
+      </p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">UX/UI & Brand Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">AthlezTech</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">3 months</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Domain</span>
+          <span class="meta-value">Sports-tech / Wearables</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Overview -->
+      <section class="reveal">
+        <div class="section-num">Overview</div>
+        <h2>Context</h2>
+        <p>
+          AthlezTech is a sports-tech startup developing a smart wristband for
+          athletes. The first product phase focused on cricket batsmen,
+          capturing player movements through embedded sensors and surfacing them
+          as actionable insights on mobile.
+        </p>
+        <p>
+          My work spanned the full product design — from UX flows and mobile UI
+          to brand identity and an early waitlist website to build pre-launch
+          awareness.
+        </p>
+        <h3>Team</h3>
+        <div class="pill-list">
+          <span class="pill">Product Engineer</span>
+          <span class="pill">Hardware Designer</span>
+          <span class="pill">UI/UX Designer (me)</span>
+        </div>
+      </section>
+
+      <!-- 01 Challenge -->
+      <section class="reveal">
+        <div class="section-num">01</div>
+        <h2>Understanding<br />the challenge</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              Traditional cricket coaching relies heavily on subjective
+              feedback. Many talented players go unnoticed due to favoritism or
+              lack of access to proper analytics tools.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Goal</div>
+            <p>
+              Build an accessible app that syncs with the wristband, visualizes
+              real-time performance stats, and provides objective insights to
+              improve technique.
+            </p>
+          </div>
+        </div>
+
+        <h3>Constraints</h3>
+        <div class="pill-list">
+          <span class="pill accent">Limited hardware budget</span>
+          <span class="pill accent">Simple enough for grassroots players</span>
+          <span class="pill accent">Wearable sensor integration</span>
+        </div>
+      </section>
+
+      <!-- 02 Research -->
+      <section class="reveal">
+        <div class="section-num">02</div>
+        <h2>Research &<br />discovery</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Market Research</div>
+            <p>
+              I explored comparable apps — SmartCricket BatSense and Zepp
+              Baseball — studying common metrics, visualization styles, and gaps
+              in existing UX and accessibility.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Key Findings</div>
+            <p>
+              Players wanted visual stances, not just numbers. Coaches needed
+              simple player comparison. Most apps lacked localized,
+              budget-friendly solutions.
+            </p>
+          </div>
+        </div>
+
+        <h3>Feature prioritization — MoSCoW</h3>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">✦</div>
+            <h4>Must have</h4>
+            <p>Live stats — bat swing speed, angles, session graphs.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◈</div>
+            <h4>Should have</h4>
+            <p>Stance visualization via vectorized player animation.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⬡</div>
+            <h4>Could have</h4>
+            <p>Personalized improvement suggestions per session.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◎</div>
+            <h4>Won't have (v1)</h4>
+            <p>Social or community comparison features.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Solution -->
+      <section class="reveal">
+        <div class="section-num">03</div>
+        <h2>Designing<br />the experience</h2>
+
+        <h3>Key app flow</h3>
+        <div class="pill-list">
+          <span class="pill accent">Mode selection</span>
+          <span class="pill accent">Real-time device sync</span>
+          <span class="pill accent">Shot-by-shot analytics</span>
+          <span class="pill accent">Session progress graphs</span>
+          <span class="pill accent">Improvement insights</span>
+        </div>
+
+        <div class="highlight">
+          <p>
+            The standout feature: a vectorized player animation that replicates
+            the batsman's real stance, bat swing, and angle — letting both
+            player and coach spot posture issues in real time, not just after
+            the session.
+          </p>
+        </div>
+
+        <h3>Brand & identity work</h3>
+        <div class="two-col">
+          <div class="two-col-cell solution">
+            <div class="cell-label">Visual Identity</div>
+            <p>
+              Designed the logo and typography system to establish a credible,
+              sports-tech brand identity from the ground up.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Waitlist Website</div>
+            <p>
+              Built an early landing page to attract initial users and generate
+              awareness before the product launched.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 Outcomes -->
+      <section class="reveal">
+        <div class="section-num">04</div>
+        <h2>Outcome &<br />impact</h2>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Stance visualization was the most used and praised feature among
+              testers
+            </p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Coaches reported easier player feedback and performance tracking
+            </p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Early prototypes attracted attention from local cricket academies
+            </p>
+          </div>
+        </div>
+
+        <div class="highlight">
+          <p>
+            This project pushed me to think beyond screens — how real-world
+            motion translates to digital feedback, and how hardware constraints
+            directly shape UX decisions.
+          </p>
+        </div>
+      </section>
+
+      <!-- Reflections -->
+      <section class="reveal">
+        <div class="section-num">Reflections</div>
+        <h2>Key learnings</h2>
+        <div class="learnings">
+          <div class="learning-item">
+            <span class="learning-num">01</span>
+            <p class="learning-text">
+              Hardware constraints are a design input, not just a limitation —
+              understanding sensor capabilities early shaped every UX decision
+              downstream.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">02</span>
+            <p class="learning-text">
+              Grassroots users need simplicity above all — complex analytics are
+              only valuable if the interface makes them immediately
+              understandable without instruction.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">03</span>
+            <p class="learning-text">
+              Visual feedback (the stance animation) resonated far more with
+              users than numerical data — showing motion is more intuitive than
+              measuring it.
+            </p>
+          </div>
+        </div>
+
+        <h3>What I'd improve next</h3>
+        <div class="pill-list">
+          <span class="pill"
+            >Improved onboarding for first-time device users</span
+          >
+          <span class="pill"
+            >Social comparison dashboard for team insights</span
+          >
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-label">Darsh Panhal — Portfolio</span>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.transitionDelay = "0.05s";
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      reveals.forEach((r) => io.observe(r));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GAIA — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.05);
+        --text: #f0ede8;
+        --muted: #888;
+        --accent: #c8f5d0;
+        --accent-dim: rgba(200, 245, 208, 0.1);
+        --accent-border: rgba(200, 245, 208, 0.2);
+        --max: 780px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .container::-webkit-scrollbar {
+        display: none;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(16px);
+        background: rgba(13, 13, 13, 0.85);
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+      .nav-back svg {
+        width: 14px;
+        height: 14px;
+      }
+      .nav-label {
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 9rem 2rem 5rem;
+        max-width: var(--max);
+        margin: 0 auto;
+        border-bottom: 1px solid var(--border);
+      }
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-border);
+        padding: 4px 12px;
+        border-radius: 2px;
+        margin-bottom: 1.75rem;
+      }
+      .hero h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.2rem, 6vw, 3.4rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--muted);
+      }
+      .hero-desc {
+        font-size: 17px;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1.75rem;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      /* ── LAYOUT ── */
+      .content {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 2rem 6rem;
+      }
+
+      /* ── SECTION ── */
+      section {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      section:last-child {
+        border-bottom: none;
+      }
+
+      .section-num {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-num::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+        display: block;
+      }
+      h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.25rem;
+      }
+      h3 {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 2rem 0 0.75rem;
+      }
+      p {
+        color: rgba(240, 237, 232, 0.75);
+        margin-bottom: 1rem;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ── PROBLEM / SOLUTION SPLIT ── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+      .two-col-cell {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .two-col-cell .cell-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .two-col-cell.problem .cell-label {
+        color: rgba(255, 120, 100, 0.7);
+      }
+      .two-col-cell.solution .cell-label {
+        color: var(--accent);
+      }
+      .two-col-cell p {
+        font-size: 14px;
+        color: rgba(240, 237, 232, 0.6);
+        margin: 0;
+      }
+
+      /* ── PILL LIST ── */
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 1.25rem 0;
+      }
+      .pill {
+        font-size: 13px;
+        font-weight: 400;
+        padding: 6px 14px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: rgba(240, 237, 232, 0.6);
+        background: var(--surface);
+        white-space: nowrap;
+      }
+      .pill.accent {
+        border-color: var(--accent-border);
+        color: var(--accent);
+        background: var(--accent-dim);
+      }
+
+      /* ── HIGHLIGHT BLOCK ── */
+      .highlight {
+        border-left: 2px solid var(--accent);
+        padding: 1.25rem 1.5rem;
+        background: var(--accent-dim);
+        border-radius: 0 6px 6px 0;
+        margin: 1.75rem 0;
+      }
+      .highlight p {
+        color: rgba(240, 237, 232, 0.8);
+        font-size: 15px;
+        margin: 0;
+      }
+
+      /* ── FEATURE CARDS ── */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 1.75rem 0;
+      }
+      .card {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .card-icon {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 15px;
+      }
+      .card h4 {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* ── OUTCOMES ── */
+      .outcomes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 1.75rem 0;
+      }
+      .outcome {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem;
+      }
+      .outcome-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .outcome p {
+        font-size: 13px;
+        color: rgba(240, 237, 232, 0.65);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* ── LEARNINGS ── */
+      .learnings {
+        counter-reset: learning;
+      }
+      .learning-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .learning-item:last-child {
+        border-bottom: none;
+      }
+      .learning-num {
+        font-family: "DM Serif Display", serif;
+        font-size: 2rem;
+        color: var(--border);
+        line-height: 1;
+        min-width: 2.5rem;
+        user-select: none;
+      }
+      .learning-text {
+        font-size: 15px;
+        color: rgba(240, 237, 232, 0.7);
+        padding-top: 4px;
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 3rem 2rem 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .footer-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .footer-nav {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-nav a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--text);
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 600px) {
+        nav {
+          padding: 1rem 1.25rem;
+        }
+        .hero {
+          padding: 7rem 1.25rem 3.5rem;
+        }
+        .content {
+          padding: 0 1.25rem 4rem;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .meta-row {
+          gap: 1.25rem;
+        }
+        .footer {
+          padding: 2.5rem 1.25rem 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="nav-label">GAIA — Case Study</span>
+    </nav>
+
+    <div class="hero">
+      <div class="tag">UX & Open Source</div>
+      <h1>An AI assistant<br /><em>people love</em> to use</h1>
+      <p class="hero-desc">
+        Redesigning GAIA's identity and experience — from a cluttered automation
+        concept to a focused, lovable personal assistant ecosystem.
+      </p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value"
+            >UI/UX Designer, Open Source Contributor</span
+          >
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Team</span>
+          <span class="meta-value">Core GAIA Team</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Timeline</span>
+          <span class="meta-value">Ongoing</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Domain</span>
+          <span class="meta-value">AI / Automation</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Overview -->
+      <section class="reveal">
+        <div class="section-num">Overview</div>
+        <h2>Context</h2>
+        <p>
+          GAIA started as a small AI assistant prototype — an idea to simplify
+          everyday automation and workflows. As the product grew, new features
+          kept being added, expanding GAIA into a large ecosystem of automation
+          tools.
+        </p>
+        <p>
+          But this growth came with a cost. The core identity got buried under
+          feature overload and technical explanations. My role was to bring back
+          focus — redesigning GAIA's identity, interface, and communication from
+          the ground up.
+        </p>
+        <h3>Contributions</h3>
+        <div class="pill-list">
+          <span class="pill">Product identity & strategy</span>
+          <span class="pill">Landing page redesign</span>
+          <span class="pill">UI components & design system</span>
+          <span class="pill">Mascot creation</span>
+          <span class="pill">Microanimations</span>
+        </div>
+      </section>
+
+      <!-- 01 Challenge -->
+      <section class="reveal">
+        <div class="section-num">01</div>
+        <h2>Understanding<br />the challenge</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              GAIA was powerful but had lost its clarity. "A personal assistant
+              that simplifies life through automation" became buried under an
+              overload of features and technical explanations.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Goal</div>
+            <p>
+              Redesign GAIA's identity, interface, and communication so users
+              immediately understood what it does, how it helps, and why it
+              matters.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Strategy -->
+      <section class="reveal">
+        <div class="section-num">02</div>
+        <h2>Refocusing<br />and simplifying</h2>
+
+        <p>
+          To restore clarity, we introduced structured development cycles — each
+          with defined phases and goals — ensuring only what mattered at each
+          stage got built.
+        </p>
+
+        <h3>Feature prioritization — MoSCoW</h3>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">✦</div>
+            <h4>Must have</h4>
+            <p>Core automation workflows that deliver immediate value.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◈</div>
+            <h4>Should have</h4>
+            <p>Integrations with popular tools users already rely on.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⬡</div>
+            <h4>Could have</h4>
+            <p>Visual customizations and user personalization options.</p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◎</div>
+            <h4>Won't have (yet)</h4>
+            <p>Experimental AI features that distract from the core.</p>
+          </div>
+        </div>
+
+        <h3>Landing page shift</h3>
+        <div class="highlight">
+          <p>
+            We reframed the entire landing strategy — from "Here's what GAIA
+            does" to "Here's how GAIA helps you." The new page leads with value,
+            not features.
+          </p>
+        </div>
+
+        <h3>New page focus areas</h3>
+        <div class="pill-list">
+          <span class="pill accent">Clear, value-driven messaging</span>
+          <span class="pill accent">Minimal feature showcasing</span>
+          <span class="pill accent">Microanimations for engagement</span>
+          <span class="pill accent">Simple, relatable use cases</span>
+          <span class="pill accent"
+            >Friendly tone matching GAIA's personality</span
+          >
+        </div>
+      </section>
+
+      <!-- 03 Crafting the Experience -->
+      <section class="reveal">
+        <div class="section-num">03</div>
+        <h2>Crafting<br />the experience</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell solution">
+            <div class="cell-label">UI Components</div>
+            <p>
+              Designed reusable components with microanimations that reflected
+              GAIA's responsive, intelligent nature — small visual cues making
+              interactions feel alive and conversational.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Mascot Creation</div>
+            <p>
+              Introduced a GAIA mascot to humanize the brand — a friendly face
+              representing the assistant, refined through multiple sketch
+              iterations exploring tone, color, and style.
+            </p>
+          </div>
+        </div>
+
+        <h3>Mascot design process</h3>
+        <div class="pill-list">
+          <span class="pill">Multiple rough sketches</span>
+          <span class="pill">Tone exploration — friendly yet techy</span>
+          <span class="pill">Color & typography refinement</span>
+          <span class="pill">Style fit with GAIA's identity</span>
+        </div>
+      </section>
+
+      <!-- 04 Outcomes -->
+      <section class="reveal">
+        <div class="section-num">04</div>
+        <h2>Outcome &<br />impact</h2>
+
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Simplified user journey — GAIA's purpose became immediately clear
+            </p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Improved landing page engagement — users grasped benefits within
+              seconds
+            </p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Established a consistent design system and component library for
+              scale
+            </p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>
+              Created a memorable visual identity — mascot and microanimations
+              made GAIA approachable
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reflections -->
+      <section class="reveal">
+        <div class="section-num">Reflections</div>
+        <h2>Key learnings</h2>
+        <div class="learnings">
+          <div class="learning-item">
+            <span class="learning-num">01</span>
+            <p class="learning-text">
+              Saying less but meaning more — great UX copy and visuals do more
+              with fewer words. Clarity is a design output, not just a writing
+              concern.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">02</span>
+            <p class="learning-text">
+              Designing product clarity is as important as designing interfaces
+              — a well-structured product narrative shapes every downstream UX
+              decision.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">03</span>
+            <p class="learning-text">
+              Great UX isn't about showing everything a product can do — it's
+              about helping users see what it can do for them. Complexity
+              becomes simple through communication and structure.
+            </p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-label">Darsh Panhal — Portfolio</span>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.style.transitionDelay = "0.05s";
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      reveals.forEach((r) => io.observe(r));
+    </script>
+  </body>
+</html>

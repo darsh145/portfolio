@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BrainSightAI — Case Study</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #0d0d0d;
+        --surface: #141414;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.05);
+        --text: #f0ede8;
+        --muted: #888;
+        --accent: #c8f5d0;
+        --accent-dim: rgba(200, 245, 208, 0.1);
+        --accent-border: rgba(200, 245, 208, 0.2);
+        --max: 780px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        overflow: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;
+      }
+
+      .container::-webkit-scrollbar {
+        display: none; /* Chrome, Safari */
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        line-height: 1.75;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.25rem 2rem;
+        border-bottom: 1px solid var(--border-light);
+        backdrop-filter: blur(16px);
+        background: rgba(13, 13, 13, 0.85);
+      }
+      .nav-back {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        letter-spacing: 0.02em;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--text);
+      }
+      .nav-back svg {
+        width: 14px;
+        height: 14px;
+      }
+      .nav-label {
+        font-size: 13px;
+        color: var(--muted);
+        letter-spacing: 0.02em;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        padding: 9rem 2rem 5rem;
+        max-width: var(--max);
+        margin: 0 auto;
+        border-bottom: 1px solid var(--border);
+      }
+      .tag {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        background: var(--accent-dim);
+        border: 1px solid var(--accent-border);
+        padding: 4px 12px;
+        border-radius: 2px;
+        margin-bottom: 1.75rem;
+      }
+      .hero h1 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(2.2rem, 6vw, 3.4rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        margin-bottom: 1.25rem;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--muted);
+      }
+      .hero-desc {
+        font-size: 17px;
+        color: var(--muted);
+        max-width: 560px;
+        line-height: 1.7;
+        margin-bottom: 2.5rem;
+      }
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        border-top: 1px solid var(--border);
+        padding-top: 1.75rem;
+      }
+      .meta-item {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .meta-label {
+        font-size: 11px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .meta-value {
+        font-size: 14px;
+        color: var(--text);
+        font-weight: 400;
+      }
+
+      /* ── LAYOUT ── */
+      .content {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 2rem 6rem;
+      }
+
+      /* ── SECTION ── */
+      section {
+        padding: 4rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      section:last-child {
+        border-bottom: none;
+      }
+
+      .section-num {
+        font-size: 11px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .section-num::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+        display: block;
+      }
+      h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+        margin-bottom: 1.25rem;
+      }
+      h3 {
+        font-size: 13px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin: 2rem 0 0.75rem;
+      }
+      p {
+        color: rgba(240, 237, 232, 0.75);
+        margin-bottom: 1rem;
+      }
+      p:last-child {
+        margin-bottom: 0;
+      }
+
+      /* ── PROBLEM / SOLUTION SPLIT ── */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 2rem 0;
+      }
+      .two-col-cell {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .two-col-cell .cell-label {
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+      }
+      .two-col-cell.problem .cell-label {
+        color: rgba(255, 120, 100, 0.7);
+      }
+      .two-col-cell.solution .cell-label {
+        color: var(--accent);
+      }
+      .two-col-cell p {
+        font-size: 14px;
+        color: rgba(240, 237, 232, 0.6);
+        margin: 0;
+      }
+
+      /* ── PILL LIST ── */
+      .pill-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin: 1.25rem 0;
+      }
+      .pill {
+        font-size: 13px;
+        font-weight: 400;
+        padding: 6px 14px;
+        border: 1px solid var(--border);
+        border-radius: 100px;
+        color: rgba(240, 237, 232, 0.6);
+        background: var(--surface);
+        white-space: nowrap;
+      }
+      .pill.accent {
+        border-color: var(--accent-border);
+        color: var(--accent);
+        background: var(--accent-dim);
+      }
+
+      /* ── HIGHLIGHT BLOCK ── */
+      .highlight {
+        border-left: 2px solid var(--accent);
+        padding: 1.25rem 1.5rem;
+        background: var(--accent-dim);
+        border-radius: 0 6px 6px 0;
+        margin: 1.75rem 0;
+      }
+      .highlight p {
+        color: rgba(240, 237, 232, 0.8);
+        font-size: 15px;
+        margin: 0;
+      }
+
+      /* ── FEATURE CARDS ── */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1px;
+        background: var(--border);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+        margin: 1.75rem 0;
+      }
+      .card {
+        background: var(--surface);
+        padding: 1.5rem;
+      }
+      .card-icon {
+        width: 32px;
+        height: 32px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1rem;
+        font-size: 15px;
+      }
+      .card h4 {
+        font-size: 14px;
+        font-weight: 500;
+        color: var(--text);
+        margin-bottom: 0.4rem;
+      }
+      .card p {
+        font-size: 13px;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      /* ── OUTCOMES ── */
+      .outcomes {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+        margin: 1.75rem 0;
+      }
+      .outcome {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem;
+      }
+      .outcome-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: var(--accent);
+        margin-bottom: 0.75rem;
+      }
+      .outcome p {
+        font-size: 13px;
+        color: rgba(240, 237, 232, 0.65);
+        margin: 0;
+        line-height: 1.5;
+      }
+
+      /* ── TOOLS ── */
+      .tools-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 1rem;
+      }
+
+      /* ── LEARNINGS ── */
+      .learnings {
+        counter-reset: learning;
+      }
+      .learning-item {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem 0;
+        border-bottom: 1px solid var(--border-light);
+      }
+      .learning-item:last-child {
+        border-bottom: none;
+      }
+      .learning-num {
+        font-family: "DM Serif Display", serif;
+        font-size: 2rem;
+        color: var(--border);
+        line-height: 1;
+        min-width: 2.5rem;
+        user-select: none;
+      }
+      .learning-text {
+        font-size: 15px;
+        color: rgba(240, 237, 232, 0.7);
+        padding-top: 4px;
+      }
+
+      /* ── FOOTER ── */
+      .footer {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 3rem 2rem 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 1rem;
+        border-top: 1px solid var(--border);
+      }
+      .footer-label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .footer-nav {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-nav a {
+        font-size: 13px;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-nav a:hover {
+        color: var(--text);
+      }
+
+      /* ── SCROLL REVEAL ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(18px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 600px) {
+        nav {
+          padding: 1rem 1.25rem;
+        }
+        .hero {
+          padding: 7rem 1.25rem 3.5rem;
+        }
+        .content {
+          padding: 0 1.25rem 4rem;
+        }
+        .two-col {
+          grid-template-columns: 1fr;
+        }
+        .meta-row {
+          gap: 1.25rem;
+        }
+        .footer {
+          padding: 2.5rem 1.25rem 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <span class="nav-label">BrainSightAI — Case Study</span>
+    </nav>
+
+    <div class="hero">
+      <div class="tag">UX & Product Design</div>
+      <h1>Designing for <em>complex</em><br />neuro-tech research</h1>
+      <p class="hero-desc">
+        Workflows, support systems, and scalable visual assets for a clinical
+        SaaS platform serving doctors and research teams.
+      </p>
+      <div class="meta-row">
+        <div class="meta-item">
+          <span class="meta-label">Role</span>
+          <span class="meta-value">UI/UX Designer</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Company</span>
+          <span class="meta-value">BrainSightAI</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Domain</span>
+          <span class="meta-value">Neuro-tech SaaS</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Tools</span>
+          <span class="meta-value">Figma, UX Research</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+      <!-- Overview -->
+      <section class="reveal">
+        <div class="section-num">Overview</div>
+        <h2>Context</h2>
+        <p>
+          BrainSightAI is a research-driven SaaS platform built for clinicians
+          and research teams working with brain data and cognitive insights. The
+          platform needed to scale — both in terms of the teams using it and the
+          complexity of workflows it supported.
+        </p>
+        <p>
+          My work focused on four interconnected challenges: team onboarding,
+          proactive user support, brand consistency, and website communication
+          clarity.
+        </p>
+        <h3>Users served</h3>
+        <div class="pill-list">
+          <span class="pill">Doctors & clinicians</span>
+          <span class="pill">Research teams</span>
+          <span class="pill">Internal testers</span>
+          <span class="pill">Stakeholders</span>
+        </div>
+      </section>
+
+      <!-- 01 Bulk Invitation -->
+      <section class="reveal">
+        <div class="section-num">01</div>
+        <h2>Bulk invitation flow<br />for clinical teams</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              Inviting collaborators to a workspace was time-consuming. No
+              structured flow for roles, departments, or access control — each
+              addition required repetitive steps.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Solution</div>
+            <p>
+              Designed a streamlined bulk invitation system with role
+              assignment, department selection, and workspace access control —
+              all in a single flow.
+            </p>
+          </div>
+        </div>
+
+        <h3>Key capabilities</h3>
+        <div class="pill-list">
+          <span class="pill accent">Single or bulk invitations</span>
+          <span class="pill accent">Role assignment</span>
+          <span class="pill accent">Department selection</span>
+          <span class="pill accent">Workspace access control</span>
+        </div>
+
+        <h3>UX considerations</h3>
+        <div class="highlight">
+          <p>
+            Clinicians aren't power users — the interface needed to stay
+            approachable while handling complex permission structures.
+            Minimizing steps and preventing role-assignment errors were the
+            primary constraints.
+          </p>
+        </div>
+
+        <h3>Outcomes</h3>
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Faster team member onboarding</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Improved workspace collaboration</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Structured access management</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 Proactive Support -->
+      <section class="reveal">
+        <div class="section-num">02</div>
+        <h2>Proactive support<br />system</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              Support was entirely reactive — users contacted support only after
+              hitting a wall. Feature discovery issues, workflow confusion, and
+              technical misunderstandings slowed productivity.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Solution</div>
+            <p>
+              A proactive support system embedded across the platform, guiding
+              users in real-time based on context — before issues arise.
+            </p>
+          </div>
+        </div>
+
+        <h3>Research process</h3>
+        <p>
+          I analyzed issues reported by users, internal testers, and
+          stakeholders — then mapped and categorized them to define where and
+          how support should be delivered contextually.
+        </p>
+
+        <h3>System components</h3>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">✦</div>
+            <h4>Contextual UI assistance</h4>
+            <p>
+              Helpful prompts that appear based on where the user is in the
+              workflow.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◈</div>
+            <h4>AI-assisted help</h4>
+            <p>
+              Smart suggestions resolving common questions without user
+              intervention.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">⬡</div>
+            <h4>Step-by-step guidance</h4>
+            <p>
+              Guided action flows for multi-step processes that are error-prone.
+            </p>
+          </div>
+          <div class="card">
+            <div class="card-icon">◎</div>
+            <h4>Alerts & email updates</h4>
+            <p>
+              System alerts and email notifications to prevent errors and inform
+              users.
+            </p>
+          </div>
+        </div>
+
+        <h3>Impact</h3>
+        <div class="outcomes">
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Reduced user confusion</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Improved feature discovery</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Faster issue resolution</p>
+          </div>
+          <div class="outcome">
+            <div class="outcome-dot"></div>
+            <p>Better platform usability</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 Brand Templates -->
+      <section class="reveal">
+        <div class="section-num">03</div>
+        <h2>Brand templates &<br />visual identity</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              Existing materials lacked consistency across social posts,
+              presentations, and product communication. No reusable design
+              template system existed.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Solution</div>
+            <p>
+              A template system aligned with the brand's scientific and
+              technological identity — researched against neuro-tech, research
+              SaaS, and AI-focused visual conventions.
+            </p>
+          </div>
+        </div>
+
+        <h3>Deliverables</h3>
+        <div class="pill-list">
+          <span class="pill">Social post templates</span>
+          <span class="pill">Presentation layouts</span>
+          <span class="pill">Product communication visuals</span>
+          <span class="pill">Reusable design assets</span>
+          <span class="pill">Design system components</span>
+        </div>
+      </section>
+
+      <!-- 04 Website Audit -->
+      <section class="reveal">
+        <div class="section-num">04</div>
+        <h2>Website redesign<br />& design audit</h2>
+
+        <div class="two-col">
+          <div class="two-col-cell problem">
+            <div class="cell-label">Problem</div>
+            <p>
+              The existing website underserved the product's neuro-tech
+              positioning. Weak section hierarchy, unclear value communication,
+              and inconsistent visual language reduced credibility.
+            </p>
+          </div>
+          <div class="two-col-cell solution">
+            <div class="cell-label">Solution</div>
+            <p>
+              Comprehensive design audit in Figma covering every section —
+              evaluating usability, hierarchy, messaging clarity, and user
+              journey — followed by focused redesign recommendations.
+            </p>
+          </div>
+        </div>
+
+        <h3>Audit scope</h3>
+        <div class="pill-list">
+          <span class="pill">Section-by-section usability</span>
+          <span class="pill">Information hierarchy</span>
+          <span class="pill">Product messaging clarity</span>
+          <span class="pill">Visual consistency</span>
+          <span class="pill">User journey mapping</span>
+        </div>
+
+        <h3>Focus areas</h3>
+        <div class="highlight">
+          <p>
+            Establishing a stronger product narrative, clearer SaaS value
+            communication, improved visual hierarchy, and design aligned with
+            neuro-tech research credibility.
+          </p>
+        </div>
+      </section>
+
+      <!-- Key Learnings -->
+      <section class="reveal">
+        <div class="section-num">Reflections</div>
+        <h2>Key learnings</h2>
+        <div class="learnings">
+          <div class="learning-item">
+            <span class="learning-num">01</span>
+            <p class="learning-text">
+              Healthcare and research platforms require an exceptional level of
+              clarity and trust — ambiguity in UI has real consequences for
+              clinical workflows.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">02</span>
+            <p class="learning-text">
+              Proactive support systems, when designed well, significantly
+              reduce friction — reducing the need for reactive support and
+              improving overall usability.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">03</span>
+            <p class="learning-text">
+              Scalable UI patterns are critical in multi-user SaaS products —
+              every design decision needs to account for the full spectrum of
+              user roles and team sizes.
+            </p>
+          </div>
+          <div class="learning-item">
+            <span class="learning-num">04</span>
+            <p class="learning-text">
+              Design audits before redesigns are invaluable — they prevent
+              solving the wrong problem and ground redesign work in real
+              evidence.
+            </p>
+          </div>
+        </div>
+
+        <h3>What I'd improve next</h3>
+        <div class="pill-list">
+          <span class="pill">Usability testing with clinicians</span>
+          <span class="pill">Expand AI support system</span>
+          <span class="pill">Full BrainSightAI design system</span>
+          <span class="pill">Website conversion optimization</span>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span class="footer-label">Darsh Panhal — Portfolio</span>
+    </footer>
+
+    <script>
+      const reveals = document.querySelectorAll(".reveal");
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e, i) => {
+            if (e.isIntersecting) {
+              e.target.style.transitionDelay = "0.05s";
+              e.target.classList.add("visible");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.08 },
+      );
+      reveals.forEach((r) => io.observe(r));
+    </script>
+  </body>
+</html>
