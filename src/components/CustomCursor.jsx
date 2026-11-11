@@ -15,12 +15,11 @@ export default function Cursor() {
 
       // Check if hovering over a clickable element
       const target = e.target;
-      const isTargetClickable =
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "button" ||
-        target.onclick ||
-        target.role === "button" ||
-        window.getComputedStyle(target).cursor === "pointer";
+      const isTargetClickable = Boolean(
+        target.closest?.(
+          'a[href], button, [role="button"], input[type="button"], input[type="submit"], select, label[for], [onclick]'
+        )
+      );
 
       setIsClickable(isTargetClickable);
     };

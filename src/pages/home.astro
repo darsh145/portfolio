@@ -1,150 +1,777 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import DockWrapper from '../components/DockWrapper.jsx';
-import Folder from '../components/folder.jsx';
-import CircularText from '../components/CircularText.jsx';
+import ToolsMarquee from '../components/ToolsMarquee.jsx';
+
+const experience = [
+	{
+		org: 'TenTwenty',
+		role: 'UI/UX Designer',
+		dates: 'Mar 2026 – Present',
+		blurb: 'Sitemaps, Figma UI and design systems for client websites, SaaS products and dashboards, plus AI-assisted design-to-code workflows.',
+		logo: '/orgs/tentwenty.png',
+		href: 'https://www.tentwenty.me',
+	},
+	{
+		org: 'BrainSightAI',
+		role: 'UI/UX Designer',
+		dates: 'Dec 2025 – Mar 2026',
+		blurb: 'Scalable UX for MRI-based clinical workflows and an admin dashboard for doctors and technicians.',
+		logo: '/orgs/brainsight.png',
+		href: 'https://www.brainsightai.com/',
+	},
+	{
+		org: 'GAIA',
+		role: 'Open-source contributor · UI/UX, Frontend',
+		dates: 'Contributed',
+		blurb: "Redesigned the assistant's identity and landing page, and built Next.js UI components.",
+		logo: '/orgs/gaia.png',
+		href: 'https://heygaia.io',
+	},
+];
+
+const designs = [
+	{
+		title: 'EV charging finder platform',
+		blurb: 'Built to shake off some boredom. A quick search flow and a modern layout for EV users on the go.',
+		kind: 'web',
+		anims: ['/animations/car-landing-page.json'],
+	},
+	{
+		title: 'The Dashboard I Needed',
+		blurb: 'Recreated a clean dashboard I spotted on X, then made it mine: balanced, structured, quietly confident.',
+		kind: 'web',
+		anims: ['/animations/Dashboard.json'],
+	},
+	{
+		title: 'The White Mess That Taught Me Spacing',
+		blurb: 'An all-white bento experiment that taught me spacing, layering and subtle shade variations.',
+		kind: 'web',
+		anims: ['/animations/Bento-Display.json'],
+	},
+	{
+		title: 'Swipe, Wait, Done.',
+		blurb: 'Review, processing, confirmation. Three screens, all about the micro-motions that make paying feel smooth.',
+		kind: 'trio',
+		anims: ['/animations/Review-&-pay.json', '/animations/Payment-processing.json', '/animations/Payment-confirm (1).json'],
+	},
+	{
+		title: 'Note It',
+		blurb: 'A notes app onboarding made on a whim, and the one that got the most love.',
+		kind: 'phone',
+		anims: ['/animations/notes.json'],
+	},
+	{
+		title: 'The Prove-It Screen',
+		blurb: 'Nutrition app onboarding, made to prove minimal gradients can be clean, sleek and subtle.',
+		kind: 'phone',
+		anims: ['/animations/nutrition-plans.json'],
+	},
+	{
+		title: 'My First Motion Experiment',
+		blurb: 'An OTP verify screen, and the first time I played with motion in a design.',
+		kind: 'phone',
+		anims: ['/animations/otp-verify.json'],
+	},
+	{
+		title: 'Logistics homepage',
+		blurb: 'A homepage revamp for a logistics company.',
+		kind: 'web',
+		anims: ['/animations/liveasy.json'],
+	},
+];
+
+const email = 'darshdp1454@gmail.com';
+const mailto = `mailto:${email}?subject=Hello%20Darsh`;
+const socials = [
+	{ label: 'LinkedIn', value: 'Darsh Panchal', href: 'https://www.linkedin.com/in/darsh-panchal-b81415249/' },
+	{ label: 'X', value: '@darsh1454', href: 'https://x.com/darsh1454' },
+	{ label: 'Behance', value: 'panchaldarsh', href: 'https://www.behance.net/panchaldarsh' },
+	{ label: 'Resume', value: 'PDF', href: '/Darsh_Resume.pdf' },
+];
 ---
 
 <Layout>
-	<main class="h-screen flex flex-col container mx-auto px-4 sm:px-6 md:px-8 py-4 sm:py-6 md:py-8 font-manrope relative overflow-hidden">
-		<!-- Welcome section - reduced spacing -->
-		<div class="flex-shrink-0 mt-2 sm:mt-4">
-			<h2 class="flex justify-center text-center text-xl sm:text-2xl md:text-3xl font-semibold text-gray-600 font-reenie transform rotate-[-8deg] px-4">
-				Welcome to my corner<br>on the internet :)
-			</h2>	
-		</div>
+	<div class="page">
+		<main class="stack">
+			<!-- Nav -->
+			<nav class="card nav" aria-label="Sections">
+				<a href="#info" class="logo" aria-label="Darsh, back to top">
+					<img src="/dp_orng.svg" alt="" width="28" height="26" />
+				</a>
+				<div class="pills">
+					{['info', 'work', 'contact'].map((id) => (
+						<a href={`#${id}`} class="pill" data-target={id}>
+							<span>{id[0].toUpperCase() + id.slice(1)}</span>
+							<svg class="pill-icon" viewBox="0 0 20 20" aria-hidden="true">
+								<circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4" />
+								<path d="M6 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+								<path class="pill-v" d="M10 6v8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+							</svg>
+						</a>
+					))}
+				</div>
+			</nav>
 
-		<!-- Main content area - perfectly centered -->
-		<div class="flex-1 flex flex-col justify-center items-center min-h-0">
-			<!-- Navigation folders - reduced spacing and size -->
-				<div class="grid grid-cols-2 sm:grid-cols-2 md:flex md:flex-row justify-center items-center gap-3 sm:gap-4 md:gap-8 lg:gap-12 w-full max-w-sm sm:max-w-md md:max-w-none mb-4 sm:mb-6 px-2">
-				<a href="/service" class="flex flex-col justify-center items-center no-underline">
-					<div class="cursor-none">
-						<Folder size={1.0} sm:size={1.1} md:size={1.2} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+			<!-- ===== Info view ===== -->
+			<div class="view" data-view="info">
+			<!-- Block 1: Intro -->
+			<section id="info" class="card intro">
+				<div class="intro-top">
+					<div class="avatar">
+						<img src="/work/avatar.png" alt="Darsh's memoji" width="300" height="300" />
 					</div>
-					<p class="text-black mt-2 sm:mt-3 font-reenie text-xl sm:text-2xl md:text-3xl font-semibold cursor-none">Services</p>
-				</a>
-				<a href="/work" class="flex flex-col justify-center items-center no-underline">
-					<div class="cursor-none">
-						<Folder size={1.0} sm:size={1.1} md:size={1.2} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
+					<div class="meta">
+						<span class="status">Designer based in Guj, Ind</span>
+						<span class="time-row"><time class="clock" data-clock>--:--:--</time><span class="tz">IST</span></span>
 					</div>
-					<p class="text-black mt-2 sm:mt-3 font-reenie text-xl sm:text-2xl md:text-3xl font-semibold cursor-none">UI Designs</p>
-				</a>
-				<a href="/extras" class="flex flex-col justify-center items-center no-underline">
-					<div class="cursor-none">
-						<Folder size={1.0} sm:size={1.1} md:size={1.2} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
-					</div>
-					<p class="text-black mt-2 sm:mt-3 font-reenie text-xl sm:text-2xl md:text-3xl font-semibold cursor-none">Project Work</p>
-				</a>
-				<a href="/collaborate" class="flex flex-col justify-center items-center no-underline">
-					<div class="cursor-none">
-						<Folder size={1.0} sm:size={1.1} md:size={1.2} color="#00d8ff" className="custom-folder hover:scale-105 transition-transform"/>
-					</div>
-					<p class="text-black mt-2 sm:mt-3 font-reenie text-xl sm:text-2xl md:text-3xl font-semibold cursor-none">Let's Collab</p>
+				</div>
+				<h1 class="intro-text">
+					Hey, I'm Darsh — a product designer who turns messy problems into interfaces that feel
+					obvious. I design apps, dashboards and brands, and I'm happiest when an idea goes from a
+					rough sketch to something people actually use.
+				</h1>
+			</section>
+
+			<!-- Block 2: Tools -->
+			<section class="card tools" aria-label="Tools and inspiration">
+				<ToolsMarquee />
+			</section>
+
+			<!-- Block 3: Experience -->
+			<section id="experience" class="card work">
+				<p class="eyebrow">Worked at &amp; contributed to</p>
+				<ul class="work-list">
+					{experience.map((e) => (
+						<li>
+							<a
+								href={e.href}
+								class="work-item"
+								target={e.href.startsWith('http') ? '_blank' : undefined}
+								rel={e.href.startsWith('http') ? 'noopener' : undefined}
+							>
+								<img class="org-logo" src={e.logo} alt="" width="44" height="44" loading="lazy" />
+								<div class="work-copy">
+									<div class="work-head">
+										<h2>{e.org}</h2>
+										<span class="dates">{e.dates}</span>
+									</div>
+									<p class="tag">{e.role}</p>
+									<p class="blurb">{e.blurb}</p>
+								</div>
+								<svg class="arrow" viewBox="0 0 16 16" aria-hidden="true">
+									<path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+								</svg>
+							</a>
+						</li>
+					))}
+				</ul>
+			</section>
+
+			</div>
+
+			<!-- ===== Work view ===== -->
+			<div class="view" data-view="work" hidden>
+				<section id="work" class="card work-intro">
+					<p class="eyebrow">UI designs</p>
+					<h1 class="work-title">Interfaces I've designed and set in motion.</h1>
+					<p class="work-sub">Want the full story? Pull out my resume.</p>
+					<a class="resume-doc" href="/Darsh_Resume.pdf" target="_blank" rel="noopener" aria-label="Open my resume (PDF)">
+						<span class="doc-sheet" aria-hidden="true">
+							<span class="doc-tag">Resume</span>
+							<span class="doc-line w90"></span>
+							<span class="doc-line w70"></span>
+							<span class="doc-line w80"></span>
+							<span class="doc-gap"></span>
+							<span class="doc-line w60"></span>
+							<span class="doc-line w85"></span>
+							<span class="doc-line w50"></span>
+						</span>
+					</a>
+				</section>
+				<ul class="designs">
+					{designs.map((d, i) => (
+						<li class="card design">
+							<div class={`preview preview-${d.kind}`}>
+								{d.anims.map((src) => (
+									<div class="lottie-slot" data-src={src}></div>
+								))}
+							</div>
+							<div class="design-copy">
+								<div class="design-head">
+									<span class="idx">{String(i + 1).padStart(2, '0')}</span>
+									<h2>{d.title}</h2>
+								</div>
+								<p class="blurb">{d.blurb}</p>
+							</div>
+						</li>
+					))}
+				</ul>
+				<a class="card more" href="https://www.behance.net/panchaldarsh" target="_blank" rel="noopener">
+					<span>More case studies on Behance</span>
+					<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
 				</a>
 			</div>
 
-			<!-- Description text - reduced size and spacing -->
-			<div class="flex justify-center items-center px-4 sm:px-6 md:px-8">
-				<p class="flex justify-center text-center text-sm sm:text-base md:text-lg lg:text-2xl font-semibold text-gray-600 font-reenie w-full sm:w-[90%] md:w-[80%] lg:w-[45rem] max-w-3xl leading-relaxed">
-					Hey there! I'm Darsh - a Product Designer with a burning desire to build cool stuff. Currently, I run tools for creativity, share awesome stories through my UX design, and collab with visionaries to bring even more ideas to life.
-				</p>
-			</div>
-		</div>
+			<!-- ===== Contact view ===== -->
+			<div class="view" data-view="contact" hidden>
+				<section id="contact" class="card profile">
+					<div class="profile-top">
+						<div class="avatar avatar-sm">
+							<img src="/work/avatar.png" alt="Darsh's memoji" width="300" height="300" />
+						</div>
+						<div class="meta">
+							<span class="time-row"><time class="clock" data-clock>--:--:--</time><span class="tz">IST</span></span>
+						</div>
+					</div>
+					<h1 class="profile-name">Darsh Panchal</h1>
+					<p class="profile-role">Product designer</p>
+					<p class="profile-loc">
+						<svg class="pin" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 14.5s4.5-4.2 4.5-7.8a4.5 4.5 0 0 0-9 0c0 3.6 4.5 7.8 4.5 7.8z" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="8" cy="6.6" r="1.6" fill="currentColor"/></svg>
+						Gujarat, India
+					</p>
+				</section>
 
-		<!-- Dock at bottom - absolutely positioned -->
-		<div class="absolute bottom-2 sm:bottom-4 left-1/2 transform -translate-x-1/2 z-50 p-2 sm:p-4">
-			<DockWrapper client:only="react" />
-		</div>
-	</main>
+				<section class="card contact">
+					<h2 class="cta-title">Have something<br />in mind?</h2>
+					<p class="cta-sub">A product, a brand, or just a half-formed idea. Let's make it real.</p>
+					<a class="cta-btn" href={mailto}>
+						<span>Say hello</span>
+						<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+					</a>
+				</section>
+
+				<section class="card reach" aria-label="Contact details">
+					<p class="eyebrow">Find me</p>
+					<ul class="reach-list">
+						<li class="reach-row">
+							<a class="reach-link" href={mailto}>
+								<span class="reach-label">Email</span>
+								<span class="reach-value">{email}</span>
+							</a>
+							<button class="copy" type="button" data-copy={email} aria-label="Copy email address">Copy</button>
+						</li>
+						{socials.map((l) => (
+							<li class="reach-row">
+								<a class="reach-link" href={l.href} target="_blank" rel="noopener">
+									<span class="reach-label">{l.label}</span>
+									<span class="reach-value">{l.value}</span>
+									<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+								</a>
+							</li>
+						))}
+					</ul>
+				</section>
+			</div>
+
+			<!-- Teaser shown under Info and Work -->
+			<a href="#contact" class="card teaser" data-goto="contact">
+				<span>Have something in mind? <strong>Let's talk</strong></span>
+				<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+			</a>
+
+			<p class="foot">© {new Date().getFullYear()} Darsh Panchal</p>
+		</main>
+	</div>
 </Layout>
 
+<script>
+	// Live clock in IST
+	const clocks = document.querySelectorAll('[data-clock]');
+	const fmt = new Intl.DateTimeFormat('en-GB', {
+		timeZone: 'Asia/Kolkata',
+		hour: '2-digit',
+		minute: '2-digit',
+		second: '2-digit',
+		hour12: false,
+	});
+	const tick = () => {
+		const now = fmt.format(new Date());
+		clocks.forEach((c) => (c.textContent = now));
+	};
+	tick();
+	setInterval(tick, 1000);
+
+	// Views: Info, Work and Contact swap in place
+	const VIEWS = ['info', 'work', 'contact'];
+	const pills = document.querySelectorAll<HTMLElement>('.pill');
+	const views = document.querySelectorAll<HTMLElement>('[data-view]');
+	const teaser = document.querySelector<HTMLElement>('.teaser');
+
+	const showView = (next: string, { scroll = true } = {}) => {
+		views.forEach((v) => (v.hidden = v.dataset.view !== next));
+		pills.forEach((p) => p.classList.toggle('is-active', p.dataset.target === next));
+		if (teaser) teaser.hidden = next === 'contact';
+		history.replaceState(null, '', next === 'info' ? location.pathname : `#${next}`);
+		if (scroll) window.scrollTo({ top: 0, behavior: 'instant' });
+	};
+
+	document.querySelectorAll<HTMLElement>('.pill, [data-goto]').forEach((el) =>
+		el.addEventListener('click', (e) => {
+			e.preventDefault();
+			showView(el.dataset.target || el.dataset.goto!);
+		})
+	);
+	document.querySelector('.logo')?.addEventListener('click', (e) => {
+		e.preventDefault();
+		showView('info');
+	});
+
+	const initial = location.hash.slice(1);
+	showView(VIEWS.includes(initial) ? initial : 'info', { scroll: false });
+
+	// Copy email
+	document.querySelectorAll<HTMLButtonElement>('[data-copy]').forEach((btn) =>
+		btn.addEventListener('click', async () => {
+			try {
+				await navigator.clipboard.writeText(btn.dataset.copy!);
+				btn.textContent = 'Copied';
+			} catch {
+				btn.textContent = 'Press ⌘C';
+			}
+			setTimeout(() => (btn.textContent = 'Copy'), 1600);
+		})
+	);
+
+	// Lottie previews: create each player only when it nears the viewport, pause it when off-screen
+	const slots = document.querySelectorAll<HTMLElement>('.lottie-slot[data-src]');
+	const lottieIO = new IntersectionObserver(
+		(entries) => {
+			for (const { target, isIntersecting } of entries) {
+				const slot = target as HTMLElement;
+				let player = slot.firstElementChild as any;
+				if (isIntersecting) {
+					if (!player) {
+						player = document.createElement('dotlottie-player');
+						player.setAttribute('src', slot.dataset.src!);
+						player.setAttribute('background', 'transparent');
+						player.setAttribute('speed', '1');
+						player.setAttribute('loop', '');
+						player.setAttribute('autoplay', '');
+						slot.appendChild(player);
+					} else {
+						player.play?.();
+					}
+				} else {
+					player?.pause?.();
+				}
+			}
+		},
+		{ rootMargin: '300px 0px' }
+	);
+	slots.forEach((s) => lottieIO.observe(s));
+</script>
+
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap');
+</style>
+
 <style>
-    *{
-        cursor: none !important;
-    }
+	.page {
+		--bg: #e9e9e7;
+		--card: #ffffff;
+		--inset: #f2f2f0;
+		--ink: #111111;
+		--muted: #7a7a76;
+		--accent: #f15a29;
+		--radius: 22px;
 
-    .font-reenie {
-        font-family: 'Reenie Beanie', cursive;
-    }
+		min-height: 100vh;
+		background: var(--bg);
+		color: var(--ink);
+		font-family: 'Inter Tight', 'Manrope', system-ui, sans-serif;
+		-webkit-font-smoothing: antialiased;
+		padding: 16px 12px 40px;
+		scroll-behavior: smooth;
+	}
+	:global(html) { scroll-behavior: smooth; }
 
-    /* Ensure main container has proper spacing for dock */
-    main {
-        padding-bottom: 120px; /* Increased space for dock on mobile */
-    }
+	.stack {
+		max-width: 440px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+	}
 
-    /* Make sure folders are touchable and properly spaced */
-    .flex.flex-col.sm\\:flex-col.md\\:flex-row {
-        gap: 1rem;
-        padding: 0 1rem;
-        margin-bottom: 2rem; /* Extra margin to prevent overlap */
-    }
+	.card {
+		background: var(--card);
+		border-radius: var(--radius);
+		scroll-margin-top: 84px;
+	}
 
-    /* Ensure all folder links are touchable */
-    a[href="/collaborate"],
-    a[href="/service"],
-    a[href="/work"],
-    a[href="/extras"] {
-        touch-action: manipulation;
-        -webkit-tap-highlight-color: transparent;
-        padding: 0.5rem;
-        min-height: 120px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-        z-index: 10; /* Ensure folders are above other elements */
-    }
+	/* Nav */
+	.nav {
+		position: sticky;
+		top: 12px;
+		z-index: 20;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 8px 8px 8px 14px;
+		border-radius: 999px;
+		box-shadow: 0 1px 0 rgba(0,0,0,0.03), 0 8px 24px -12px rgba(0,0,0,0.15);
+	}
+	.logo img { display: block; width: 24px; height: auto; }
+	.pills { display: flex; gap: 6px; }
+	.pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		padding: 7px 10px 7px 14px;
+		border-radius: 999px;
+		background: var(--inset);
+		color: var(--ink);
+		font-size: 16px;
+		text-decoration: none;
+		transition: background 0.25s ease;
+	}
+	.pill:hover { background: #e6e6e3; }
+	.pill-icon { width: 18px; height: 18px; }
+	.pill-v { transition: transform 0.3s ease; transform-origin: 10px 10px; }
+	.pill.is-active { background: var(--accent); }
+	.pill.is-active .pill-v { transform: scaleY(0); }
 
-    /* Active state for touch feedback */
-    a[href="/collaborate"]:active,
-    a[href="/service"]:active,
-    a[href="/work"]:active,
-    a[href="/extras"]:active {
-        transform: scale(0.95);
-        opacity: 0.8;
-    }
+	/* Intro */
+	.intro { padding: 12px 12px 18px; }
+	.intro-top { display: flex; justify-content: space-between; gap: 12px; }
+	.avatar {
+		width: 120px;
+		aspect-ratio: 1;
+		border-radius: 14px;
+		background: linear-gradient(160deg, #ffe3d6, #f5d0c0);
+		overflow: hidden;
+		flex-shrink: 0;
+	}
+	.avatar img { width: 100%; height: 100%; object-fit: cover; transform: translateY(6%) scale(1.05); }
+	.meta {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		gap: 4px;
+		font-size: 13px;
+		font-variant-numeric: tabular-nums;
+	}
+	.time-row { display: inline-flex; align-items: baseline; gap: 6px; }
+	.status {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		color: var(--muted);
+	}
+	.pin { width: 13px; height: 13px; flex-shrink: 0; }
+	.tz { color: var(--muted); }
+	.intro-text {
+		margin: 64px 0 0;
+		font-size: 19px;
+		line-height: 1.32;
+		font-weight: 400;
+		letter-spacing: -0.01em;
+		text-wrap: pretty;
+	}
 
-    /* Ensure dock doesn't overlap folders */
-    .absolute.bottom-4 {
-        position: fixed !important;
-        bottom: 1rem !important;
-        z-index: 50;
-    }
+	/* Tools marquee */
+	.tools { padding: 14px 0; overflow: hidden; }
+	.tools :global(.marquee) {
+		-webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+		mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+	}
+	.tools :global(.marquee-track) {
+		display: flex;
+		width: max-content;
+		animation: marquee 28s linear infinite;
+	}
+	.tools:hover :global(.marquee-track) { animation-play-state: paused; }
+	.tools :global(.marquee-row) {
+		display: flex;
+		gap: 28px;
+		padding: 0 14px;
+		margin: 0;
+		list-style: none;
+	}
+	.tools :global(.tool) {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		font-size: 17px;
+		font-weight: 600;
+		letter-spacing: -0.02em;
+		white-space: nowrap;
+	}
+	.tools :global(.tool-icon) {
+		width: 22px;
+		height: 22px;
+		flex-shrink: 0;
+		display: grid;
+		place-items: center;
+		border-radius: 6px;
+		overflow: hidden;
+		color: #fff;
+	}
+	.tools :global(.tool-icon svg) { width: 13px; height: 13px; }
+	.tools :global(.tool-icon img), .tools :global(.tool-icon .full) { width: 100%; height: 100%; display: block; }
 
-    /* Responsive adjustments */
-    @media (max-width: 640px) {
-        main {
-            padding-bottom: 140px; /* More space on small screens */
-        }
+	/* Work */
+	.work { padding: 6px; }
+	.eyebrow {
+		margin: 8px 10px 8px;
+		font-size: 13px;
+		color: var(--muted);
+	}
+	.work-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+	.work-item {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		gap: 12px;
+		padding: 12px 14px 12px 12px;
+		border-radius: 16px;
+		background: var(--inset);
+		color: inherit;
+		text-decoration: none;
+		transition: background 0.25s ease;
+	}
+	.work-item:hover { background: #ebebe8; }
+	.org-logo {
+		width: 44px;
+		height: 44px;
+		flex-shrink: 0;
+		border-radius: 11px;
+		object-fit: cover;
+		box-shadow: 0 0 0 1px rgba(0,0,0,0.06);
+		transition: transform 0.4s cubic-bezier(.2,.7,.2,1);
+	}
+	.work-item:hover .org-logo { transform: rotate(-6deg) scale(1.05); }
+	.work-copy { flex: 1; min-width: 0; }
+	.work-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+	.work-head h2 { margin: 0; font-size: 15px; font-weight: 500; }
+	.dates { font-size: 12px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+	.arrow {
+		position: absolute; right: 12px; bottom: 12px;
+		width: 14px; height: 14px; color: var(--muted);
+		transition: transform 0.25s ease, color 0.25s ease;
+	}
+	.work-item:hover .arrow { transform: translate(2px, -2px); color: var(--accent); }
+	.tag { margin: 2px 0 8px; font-size: 12px; color: var(--muted); }
+	.blurb { margin: 0; font-size: 13px; line-height: 1.4; color: var(--muted); }
+	.work-item .blurb { padding-right: 22px; }
 
-        .flex.flex-col.sm\\:flex-col.md\\:flex-row {
-            gap: 0.75rem;
-        }
-        
-        /* Ensure last folder (Let's Collab) has enough space */
-        a[href="/collaborate"] {
-            margin-bottom: 1rem;
-        }
-    }
+	/* Views */
+	.view { display: flex; flex-direction: column; gap: 8px; }
+	.view[hidden] { display: none; }
 
-    @media (min-width: 641px) and (max-width: 768px) {
-        main {
-            padding-bottom: 100px;
-        }
-    }
+	/* Work view */
+	.work-intro {
+		position: relative;
+		overflow: hidden;
+		padding: 6px 16px 20px;
+	}
+	.work-intro .eyebrow { margin: 8px 0 14px; }
+	.work-title,
+	.work-sub { max-width: calc(100% - 96px); position: relative; z-index: 1; }
+	.work-title {
+		margin: 0;
+		font-size: 24px;
+		line-height: 1.12;
+		font-weight: 500;
+		letter-spacing: -0.03em;
+		text-wrap: balance;
+	}
+	.work-sub { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
 
-    @media (min-width: 769px) {
-        main {
-            padding-bottom: 80px;
-        }
-    }
+	/* Resume sheet peeking from the corner */
+	.resume-doc {
+		position: absolute;
+		top: 18px;
+		right: -34px;
+		width: 118px;
+		height: 150px;
+		transform: rotate(-24deg);
+		transform-origin: 30% 70%;
+		transition: transform 0.45s cubic-bezier(.2,.8,.2,1.2);
+	}
+	.doc-sheet {
+		position: absolute;
+		inset: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 7px;
+		padding: 14px 12px;
+		border-radius: 8px;
+		background: #fff;
+		border: 1.5px solid var(--accent);
+		box-shadow: 0 10px 24px -12px rgba(241, 90, 41, 0.45);
+		transition: box-shadow 0.3s ease;
+	}
+	.doc-line { height: 4px; border-radius: 2px; background: #e4e4e0; }
+	.doc-gap { height: 4px; }
+	.w50 { width: 50%; } .w60 { width: 60%; } .w70 { width: 70%; }
+	.w80 { width: 80%; } .w85 { width: 85%; } .w90 { width: 90%; }
+	.doc-tag {
+		align-self: flex-start;
+		margin-bottom: 3px;
+		padding: 3px 7px;
+		border-radius: 4px;
+		background: var(--accent);
+		color: #fff;
+		font-size: 9px;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+	}
+	.resume-doc:hover,
+	.resume-doc:focus-visible { transform: translate(-14px, -6px) rotate(-14deg); }
+	.resume-doc:hover .doc-sheet { box-shadow: 0 16px 30px -12px rgba(241, 90, 41, 0.6); }
+	@media (prefers-reduced-motion: reduce) { .resume-doc { transition: none; } }
+	.designs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+	.design { padding: 6px; }
+	.preview {
+		aspect-ratio: 16 / 10.4;
+		border-radius: 16px;
+		background: var(--inset);
+		overflow: hidden;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.lottie-slot { flex: 1; align-self: stretch; min-width: 0; position: relative; }
+	.lottie-slot :global(dotlottie-player) { position: absolute; inset: 0; display: block; width: 100%; height: 100%; }
+	.preview-phone { padding: 14px 0; }
+	.preview-trio { gap: 4px; padding: 14px 10px; }
+	.design-copy { padding: 12px 10px 8px; }
+	.design-head { display: flex; align-items: baseline; gap: 8px; }
+	.idx { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+	.design-head h2 { margin: 0; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; }
+	.design .blurb { margin: 6px 0 4px; }
+	.more {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		padding: 18px 16px;
+		color: var(--ink);
+		font-size: 15px;
+		text-decoration: none;
+		transition: background 0.2s ease;
+	}
+	.more svg { width: 14px; height: 14px; color: var(--muted); transition: transform 0.25s ease, color 0.25s ease; }
+	.more:hover svg { transform: translate(2px, -2px); color: var(--accent); }
 
-    /* Very small screens */
-    @media (max-height: 600px) {
-        main {
-            padding-bottom: 160px;
-        }
-    }
+	/* Contact */
+	.contact { padding: 22px 16px 16px; }
+	.cta-title {
+		margin: 0;
+		font-size: 34px;
+		line-height: 1.02;
+		font-weight: 500;
+		letter-spacing: -0.035em;
+	}
+	.cta-sub { margin: 12px 0 20px; font-size: 14px; line-height: 1.4; color: var(--muted); max-width: 30ch; }
+	.cta-btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		padding: 11px 16px 11px 18px;
+		border-radius: 999px;
+		background: var(--ink);
+		color: #fff;
+		font-size: 15px;
+		text-decoration: none;
+		transition: background 0.25s ease;
+	}
+	.cta-btn svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
+	.cta-btn:hover { background: var(--accent); }
+	.cta-btn:hover svg { transform: translate(2px, -2px); }
+	/* Contact view */
+	.profile { padding: 12px 12px 20px; }
+	.profile-top { display: flex; justify-content: space-between; gap: 12px; }
+	.avatar-sm { width: 72px; border-radius: 12px; }
+	.profile-name {
+		margin: 40px 0 0;
+		font-size: 38px;
+		line-height: 1;
+		font-weight: 500;
+		letter-spacing: -0.04em;
+	}
+	.profile-role { margin: 8px 0 0; font-size: 16px; }
+	.profile-loc {
+		margin: 4px 0 0;
+		display: inline-flex;
+		align-items: center;
+		gap: 5px;
+		font-size: 14px;
+		color: var(--muted);
+	}
+	.reach { padding: 6px; }
+	.reach-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+	.reach-row {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		border-radius: 14px;
+		background: var(--inset);
+		transition: background 0.2s ease;
+	}
+	.reach-row:hover { background: #ebebe8; }
+	.reach-link {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 14px 12px;
+		color: var(--ink);
+		text-decoration: none;
+	}
+	.reach-label { font-size: 15px; }
+	.reach-value {
+		margin-left: auto;
+		font-size: 13px;
+		color: var(--muted);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	.reach-link svg { width: 13px; height: 13px; flex-shrink: 0; color: var(--muted); transition: transform 0.25s ease, color 0.25s ease; }
+	.reach-link:hover svg { transform: translate(2px, -2px); color: var(--accent); }
+	.copy {
+		margin-right: 8px;
+		padding: 5px 10px;
+		border: 0;
+		border-radius: 999px;
+		background: var(--card);
+		color: var(--ink);
+		font: inherit;
+		font-size: 12px;
+		transition: background 0.2s ease;
+	}
+	.copy:hover { background: var(--accent); }
+
+	/* Teaser under Info and Work */
+	.teaser {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 12px;
+		padding: 18px 16px;
+		color: var(--muted);
+		font-size: 15px;
+		text-decoration: none;
+	}
+	.teaser[hidden] { display: none; }
+	.teaser strong { color: var(--ink); font-weight: 500; }
+	.teaser svg { width: 14px; height: 14px; flex-shrink: 0; transition: transform 0.25s ease, color 0.25s ease; }
+	.teaser:hover svg { transform: translate(2px, -2px); color: var(--accent); }
+
+	.foot { margin: 10px 0 0; text-align: center; font-size: 12px; color: var(--muted); }
+
+	@keyframes marquee { to { transform: translateX(-50%); } }
+
+	@media (min-width: 768px) {
+		.page { padding-top: 40px; }
+		.intro-text { font-size: 20px; }
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.tools :global(.marquee-track) { animation: none; }
+		:global(html) { scroll-behavior: auto; }
+	}
 </style>
