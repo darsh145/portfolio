@@ -4,8 +4,19 @@ export default function Cursor() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [visible, setVisible] = useState(false);
   const [isClickable, setIsClickable] = useState(false);
+  // Only devices with a real mouse/trackpad get the custom cursor (not phones/tablets)
+  const [enabled, setEnabled] = useState(false);
 
   useEffect(() => {
+    const mq = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setEnabled(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
     // Hide the default cursor
     document.body.style.cursor = "none";
 
@@ -38,7 +49,9 @@ export default function Cursor() {
       // Restore default cursor
       document.body.style.cursor = "auto";
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   return (
     <div

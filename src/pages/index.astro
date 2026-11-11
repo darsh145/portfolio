@@ -622,6 +622,13 @@ const socials = [
 	.resume-doc:focus-visible { transform: translate(-14px, -6px) rotate(-14deg); }
 	.resume-doc:hover .doc-sheet { box-shadow: 0 16px 30px -12px rgba(241, 90, 41, 0.6); }
 	@media (prefers-reduced-motion: reduce) { .resume-doc { transition: none; } }
+	@media (max-width: 480px) {
+		.work-title,
+		.work-sub { max-width: calc(100% - 92px); }
+		.resume-doc { width: 92px; height: 118px; top: 22px; right: -40px; }
+		.doc-sheet { gap: 6px; padding: 11px 10px; }
+		.doc-tag { font-size: 8px; padding: 2px 6px; }
+	}
 	.designs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 	.design { padding: 6px; }
 	.preview {

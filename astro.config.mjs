@@ -11,6 +11,9 @@ export default defineConfig({
     }),
   ],
   output: "static",
+  redirects: {
+    "/home": "/",
+  },
   site: "https://your-vercel-domain.vercel.app", // Update this with your actual Vercel domain
   build: {
     inlineStylesheets: "auto",

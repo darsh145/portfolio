@@ -4,11 +4,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Hide the native cursor everywhere; the custom cursor (CustomCursor.jsx) replaces it */
-*,
-*::before,
-*::after {
-  cursor: none !important;
+/* On mouse/trackpad devices, hide the native cursor; the custom cursor (CustomCursor.jsx) replaces it */
+@media (hover: hover) and (pointer: fine) {
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
+  }
 }
 
 /* Additional styles to ensure dock visibility */
