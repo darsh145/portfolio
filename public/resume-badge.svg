@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="900" viewBox="0 0 640 900">
+  <rect width="640" height="900" fill="#ffffff"/>
+  <!-- header band -->
+  <rect width="640" height="300" fill="#F15A29"/>
+  <rect x="270" y="46" width="100" height="22" rx="11" fill="#ffffff" opacity="0.35"/>
+  <text x="56" y="232" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="92" font-weight="700" letter-spacing="-3" fill="#ffffff">Resume</text>
+  <!-- name -->
+  <text x="56" y="400" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="58" font-weight="600" letter-spacing="-1.5" fill="#111111">Darsh Panchal</text>
+  <text x="56" y="456" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="34" fill="#7a7a76">Product Designer</text>
+  <!-- placeholder lines -->
+  <rect x="56" y="530" width="460" height="16" rx="8" fill="#ececea"/>
+  <rect x="56" y="572" width="380" height="16" rx="8" fill="#ececea"/>
+  <rect x="56" y="614" width="420" height="16" rx="8" fill="#ececea"/>
+  <rect x="56" y="680" width="300" height="16" rx="8" fill="#ececea"/>
+  <rect x="56" y="722" width="350" height="16" rx="8" fill="#ececea"/>
+  <!-- footer -->
+  <text x="56" y="838" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="600" fill="#F15A29">Tap to open ↗</text>
+  <text x="584" y="838" text-anchor="end" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" fill="#b0b0ab">PDF</text>
+</svg>

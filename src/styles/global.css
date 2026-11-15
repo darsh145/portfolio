@@ -83,3 +83,101 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ------------------------------------------------------------------
+   Bubble bounce buttons (inspired by StringTune's hover buttons).
+   The background lives on ::before and springs outward on hover with
+   an overshooting curve; a press snaps it in, release bounces it back.
+   Usage: add class="bubble" and set the fill via --bubble-bg.
+------------------------------------------------------------------- */
+.bubble {
+  --bubble-grow: 4px;
+  --bubble-press: 1px;
+  --f-bounce: cubic-bezier(0.6, 0.5, 0, 3);
+  position: relative;
+  isolation: isolate;
+  background: none;
+}
+.bubble::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--bubble-bg, transparent);
+  transition:
+    inset 0.45s var(--f-bounce),
+    background-color 0.25s ease;
+}
+.bubble:hover::before,
+.bubble:focus-visible::before {
+  inset: calc(var(--bubble-grow) * -1);
+  transition:
+    inset 0.3s var(--f-bounce),
+    background-color 0.25s ease;
+}
+.bubble:active::before {
+  inset: calc(var(--bubble-press) * -1);
+  transition: inset 0s, background-color 0s;
+}
+@media (prefers-reduced-motion: reduce) {
+  .bubble::before,
+  .bubble:hover::before,
+  .bubble:active::before {
+    transition: background-color 0.25s ease;
+    inset: 0;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Scroll roll (inspired by StringTune's Skill Hub list).
+   Elements with class="roll" string="progress|lerp" get:
+     --progress  0 → 1 as the element travels up through the viewport
+     --lerp      current scroll velocity (signed)
+   While scrolling, blocks tilt back in 3D and shrink the further they
+   are from the viewport centre — the faster you scroll, the stronger.
+   At rest (--lerp ≈ 0) everything sits flat.
+------------------------------------------------------------------- */
+.roll {
+  --roll-tilt: 1;      /* 0 = no tilt, 1 = default */
+  --roll-shrink: 1;    /* 0 = no shrink, 1 = default */
+  --roll-gain: 4;      /* scales scroll velocity; raise for a stronger reaction */
+  --_v: max(min(calc(var(--lerp, 0) * var(--roll-gain)), 120), -120);
+  --_speed: max(var(--_v), calc(var(--_v) * -1));
+  --_off: calc(0.5 - var(--progress, 0.5));
+  --_dist: max(var(--_off), calc(var(--_off) * -1));
+  transform:
+    perspective(80rem)
+    rotateX(calc(-90deg * var(--_off) * var(--_speed) / 70 * var(--roll-tilt)))
+    scale(max(calc(1 - var(--_dist) * var(--_speed) / 100 * var(--roll-shrink)), 0.6));
+  transform-origin: 50% 50%;
+  backface-visibility: hidden;
+}
+
+/* ------------------------------------------------------------------
+   Hover group: hovering one item springs it up while its siblings
+   ease back, with the same overshoot curve as the bubble buttons.
+   Usage: class="hover-group" on the list; direct children react.
+------------------------------------------------------------------- */
+.hover-group > * {
+  --f-bounce: cubic-bezier(0.6, 0.5, 0, 3);
+  scale: 1 1;
+  transition: scale 0.45s var(--f-bounce), opacity 0.4s ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .hover-group:has(> :hover) > * {
+    scale: 0.97 0.96;
+    opacity: 0.6;
+    transition: scale 0.3s var(--f-bounce), opacity 0.4s ease;
+  }
+  .hover-group:has(> :hover) > :hover {
+    scale: 1.0075 1.01;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roll { transform: none; }
+  .hover-group > *,
+  .hover-group:has(> :hover) > * { scale: 1 1; transition: opacity 0.3s ease; }
+}

@@ -21,6 +21,10 @@ import '../styles/global.css';
   <body>
     <Cursor client:only="react"/>
     <slot />
+    <script>
+      import { initStringTune } from '../lib/stringtune';
+      initStringTune();
+    </script>
   </body>
 </html>
 

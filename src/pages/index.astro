@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import XmasTree from '../components/XmasTree.astro';
+import ResumeLanyard from '../components/ResumeLanyard.jsx';
 import ToolsMarquee from '../components/ToolsMarquee.jsx';
 
 const experience = [
@@ -100,7 +102,7 @@ const socials = [
 				</a>
 				<div class="pills">
 					{['info', 'work', 'contact'].map((id) => (
-						<a href={`#${id}`} class="pill" data-target={id}>
+						<a href={`#${id}`} class="pill bubble" data-target={id}>
 							<span>{id[0].toUpperCase() + id.slice(1)}</span>
 							<svg class="pill-icon" viewBox="0 0 20 20" aria-hidden="true">
 								<circle cx="10" cy="10" r="8.5" fill="none" stroke="currentColor" stroke-width="1.4" />
@@ -115,7 +117,7 @@ const socials = [
 			<!-- ===== Info view ===== -->
 			<div class="view" data-view="info">
 			<!-- Block 1: Intro -->
-			<section id="info" class="card intro">
+			<section id="info" class="card intro roll" string="progress|lerp">
 				<div class="intro-top">
 					<div class="avatar">
 						<img src="/work/avatar.png" alt="Darsh's memoji" width="300" height="300" />
@@ -133,14 +135,14 @@ const socials = [
 			</section>
 
 			<!-- Block 2: Tools -->
-			<section class="card tools" aria-label="Tools and inspiration">
+			<section class="card tools roll" string="progress|lerp" aria-label="Tools and inspiration">
 				<ToolsMarquee />
 			</section>
 
 			<!-- Block 3: Experience -->
-			<section id="experience" class="card work">
+			<section id="experience" class="card work roll" string="progress|lerp">
 				<p class="eyebrow">Worked at &amp; contributed to</p>
-				<ul class="work-list">
+				<ul class="work-list hover-group">
 					{experience.map((e) => (
 						<li>
 							<a
@@ -171,26 +173,17 @@ const socials = [
 
 			<!-- ===== Work view ===== -->
 			<div class="view" data-view="work" hidden>
-				<section id="work" class="card work-intro">
+				<section id="work" class="card work-intro roll" string="progress|lerp">
 					<p class="eyebrow">UI designs</p>
 					<h1 class="work-title">Interfaces I've designed and set in motion.</h1>
 					<p class="work-sub">Want the full story? Pull out my resume.</p>
-					<a class="resume-doc" href="/Darsh_Resume.pdf" target="_blank" rel="noopener" aria-label="Open my resume (PDF)">
-						<span class="doc-sheet" aria-hidden="true">
-							<span class="doc-tag">Resume</span>
-							<span class="doc-line w90"></span>
-							<span class="doc-line w70"></span>
-							<span class="doc-line w80"></span>
-							<span class="doc-gap"></span>
-							<span class="doc-line w60"></span>
-							<span class="doc-line w85"></span>
-							<span class="doc-line w50"></span>
-						</span>
-					</a>
+					<div class="resume-lanyard">
+						<ResumeLanyard client:visible />
+					</div>
 				</section>
-				<ul class="designs">
+				<ul class="designs hover-group">
 					{designs.map((d, i) => (
-						<li class="card design">
+						<li class="card design roll" string="progress|lerp">
 							<div class={`preview preview-${d.kind}`}>
 								{d.anims.map((src) => (
 									<div class="lottie-slot" data-src={src}></div>
@@ -206,7 +199,7 @@ const socials = [
 						</li>
 					))}
 				</ul>
-				<a class="card more" href="https://www.behance.net/panchaldarsh" target="_blank" rel="noopener">
+				<a class="card more roll" string="progress|lerp" href="https://www.behance.net/panchaldarsh" target="_blank" rel="noopener">
 					<span>More case studies on Behance</span>
 					<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
 				</a>
@@ -214,7 +207,7 @@ const socials = [
 
 			<!-- ===== Contact view ===== -->
 			<div class="view" data-view="contact" hidden>
-				<section id="contact" class="card profile">
+				<section id="contact" class="card profile roll" string="progress|lerp">
 					<div class="profile-top">
 						<div class="avatar avatar-sm">
 							<img src="/work/avatar.png" alt="Darsh's memoji" width="300" height="300" />
@@ -231,24 +224,25 @@ const socials = [
 					</p>
 				</section>
 
-				<section class="card contact">
+				<section class="card contact roll" string="progress|lerp">
 					<h2 class="cta-title">Have something<br />in mind?</h2>
 					<p class="cta-sub">A product, a brand, or just a half-formed idea. Let's make it real.</p>
-					<a class="cta-btn" href={mailto}>
+					<a class="cta-btn bubble" href={mailto}>
 						<span>Say hello</span>
 						<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
 					</a>
+					<div class="contact-tree"><XmasTree /></div>
 				</section>
 
-				<section class="card reach" aria-label="Contact details">
+				<section class="card reach roll" string="progress|lerp" aria-label="Contact details">
 					<p class="eyebrow">Find me</p>
-					<ul class="reach-list">
+					<ul class="reach-list hover-group">
 						<li class="reach-row">
 							<a class="reach-link" href={mailto}>
 								<span class="reach-label">Email</span>
 								<span class="reach-value">{email}</span>
 							</a>
-							<button class="copy" type="button" data-copy={email} aria-label="Copy email address">Copy</button>
+							<button class="copy bubble" type="button" data-copy={email} aria-label="Copy email address">Copy</button>
 						</li>
 						{socials.map((l) => (
 							<li class="reach-row">
@@ -264,7 +258,7 @@ const socials = [
 			</div>
 
 			<!-- Teaser shown under Info and Work -->
-			<a href="#contact" class="card teaser" data-goto="contact">
+			<a href="#contact" class="card teaser roll" string="progress|lerp" data-goto="contact">
 				<span>Have something in mind? <strong>Let's talk</strong></span>
 				<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 11.5l7-7M5.5 4.5h6v6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
 			</a>
@@ -275,6 +269,7 @@ const socials = [
 </Layout>
 
 <script>
+	import { scrollToTop, refreshStringTune } from '../lib/stringtune';
 	// Live clock in IST
 	const clocks = document.querySelectorAll('[data-clock]');
 	const fmt = new Intl.DateTimeFormat('en-GB', {
@@ -302,7 +297,8 @@ const socials = [
 		pills.forEach((p) => p.classList.toggle('is-active', p.dataset.target === next));
 		if (teaser) teaser.hidden = next === 'contact';
 		history.replaceState(null, '', next === 'info' ? location.pathname : `#${next}`);
-		if (scroll) window.scrollTo({ top: 0, behavior: 'instant' });
+		if (scroll) scrollToTop();
+		refreshStringTune();
 	};
 
 	document.querySelectorAll<HTMLElement>('.pill, [data-goto]').forEach((el) =>
@@ -381,9 +377,7 @@ const socials = [
 		font-family: 'Inter Tight', 'Manrope', system-ui, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		padding: 16px 12px 40px;
-		scroll-behavior: smooth;
 	}
-	:global(html) { scroll-behavior: smooth; }
 
 	.stack {
 		max-width: 440px;
@@ -419,16 +413,15 @@ const socials = [
 		gap: 6px;
 		padding: 7px 10px 7px 14px;
 		border-radius: 999px;
-		background: var(--inset);
+		--bubble-bg: var(--inset);
 		color: var(--ink);
 		font-size: 16px;
 		text-decoration: none;
-		transition: background 0.25s ease;
 	}
-	.pill:hover { background: #e6e6e3; }
+	.pill:hover { --bubble-bg: #e6e6e3; }
 	.pill-icon { width: 18px; height: 18px; }
 	.pill-v { transition: transform 0.3s ease; transform-origin: 10px 10px; }
-	.pill.is-active { background: var(--accent); }
+	.pill.is-active { --bubble-bg: var(--accent); }
 	.pill.is-active .pill-v { transform: scaleY(0); }
 
 	/* Intro */
@@ -525,12 +518,12 @@ const socials = [
 		gap: 12px;
 		padding: 12px 14px 12px 12px;
 		border-radius: 16px;
-		background: var(--inset);
+		background: #f7f7f8;
 		color: inherit;
 		text-decoration: none;
 		transition: background 0.25s ease;
 	}
-	.work-item:hover { background: #ebebe8; }
+	.work-item:hover { background: #efeff1; }
 	.org-logo {
 		width: 44px;
 		height: 44px;
@@ -562,7 +555,6 @@ const socials = [
 	/* Work view */
 	.work-intro {
 		position: relative;
-		overflow: hidden;
 		padding: 6px 16px 20px;
 	}
 	.work-intro .eyebrow { margin: 8px 0 14px; }
@@ -578,56 +570,37 @@ const socials = [
 	}
 	.work-sub { margin: 10px 0 0; font-size: 14px; color: var(--muted); }
 
-	/* Resume sheet peeking from the corner */
-	.resume-doc {
-		position: absolute;
-		top: 18px;
-		right: -34px;
-		width: 118px;
-		height: 150px;
-		transform: rotate(-24deg);
-		transform-origin: 30% 70%;
-		transition: transform 0.45s cubic-bezier(.2,.8,.2,1.2);
-	}
-	.doc-sheet {
+	/* Resume lanyard (React Bits Lanyard) — canvas spans the card, badge hangs on the right */
+	.work-intro { min-height: 230px; }
+	.work-title,
+	.work-sub { max-width: calc(100% - 140px); }
+	.resume-lanyard {
 		position: absolute;
 		inset: 0;
-		display: flex;
-		flex-direction: column;
-		gap: 7px;
-		padding: 14px 12px;
-		border-radius: 8px;
-		background: #fff;
-		border: 1.5px solid var(--accent);
-		box-shadow: 0 10px 24px -12px rgba(241, 90, 41, 0.45);
-		transition: box-shadow 0.3s ease;
+		z-index: 2;
+		border-radius: inherit;
+		overflow: hidden;
 	}
-	.doc-line { height: 4px; border-radius: 2px; background: #e4e4e0; }
-	.doc-gap { height: 4px; }
-	.w50 { width: 50%; } .w60 { width: 60%; } .w70 { width: 70%; }
-	.w80 { width: 80%; } .w85 { width: 85%; } .w90 { width: 90%; }
-	.doc-tag {
-		align-self: flex-start;
-		margin-bottom: 3px;
-		padding: 3px 7px;
-		border-radius: 4px;
+	.resume-lanyard :global(.resume-lanyard-link) {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		overflow: hidden;
+		clip-path: inset(50%);
+		white-space: nowrap;
+	}
+	.resume-lanyard :global(.resume-lanyard-link:focus-visible) {
+		width: auto;
+		height: auto;
+		clip-path: none;
+		right: 16px;
+		bottom: 14px;
+		padding: 6px 10px;
+		border-radius: 999px;
 		background: var(--accent);
 		color: #fff;
-		font-size: 9px;
-		font-weight: 600;
-		letter-spacing: 0.06em;
-		text-transform: uppercase;
-	}
-	.resume-doc:hover,
-	.resume-doc:focus-visible { transform: translate(-14px, -6px) rotate(-14deg); }
-	.resume-doc:hover .doc-sheet { box-shadow: 0 16px 30px -12px rgba(241, 90, 41, 0.6); }
-	@media (prefers-reduced-motion: reduce) { .resume-doc { transition: none; } }
-	@media (max-width: 480px) {
-		.work-title,
-		.work-sub { max-width: calc(100% - 92px); }
-		.resume-doc { width: 92px; height: 118px; top: 22px; right: -40px; }
-		.doc-sheet { gap: 6px; padding: 11px 10px; }
-		.doc-tag { font-size: 8px; padding: 2px 6px; }
+		font-size: 12px;
+		text-decoration: none;
 	}
 	.designs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 	.design { padding: 6px; }
@@ -663,7 +636,22 @@ const socials = [
 	.more:hover svg { transform: translate(2px, -2px); color: var(--accent); }
 
 	/* Contact */
-	.contact { padding: 22px 16px 16px; }
+	.contact {
+		--tree-w: 210px;
+		position: relative;
+		overflow: hidden;
+		padding: 22px 16px 16px;
+	}
+	.contact-tree {
+		position: absolute;
+		right: -14px;
+		bottom: -6px;
+		width: var(--tree-w);
+	}
+	/* keep the subtitle clear of the tree (its artwork starts ~17% in from the left of the SVG) */
+	.contact .cta-sub { max-width: min(30ch, calc(100% + 6px - 0.83 * var(--tree-w))); }
+	@media (max-width: 440px) { .contact { --tree-w: 150px; } }
+	@media (max-width: 360px) { .contact { --tree-w: 130px; } }
 	.cta-title {
 		margin: 0;
 		font-size: 34px;
@@ -678,14 +666,13 @@ const socials = [
 		gap: 8px;
 		padding: 11px 16px 11px 18px;
 		border-radius: 999px;
-		background: var(--ink);
+		--bubble-bg: var(--ink);
 		color: #fff;
 		font-size: 15px;
 		text-decoration: none;
-		transition: background 0.25s ease;
 	}
 	.cta-btn svg { width: 14px; height: 14px; transition: transform 0.25s ease; }
-	.cta-btn:hover { background: var(--accent); }
+	.cta-btn:hover { --bubble-bg: var(--accent); }
 	.cta-btn:hover svg { transform: translate(2px, -2px); }
 	/* Contact view */
 	.profile { padding: 12px 12px 20px; }
@@ -744,13 +731,13 @@ const socials = [
 		padding: 5px 10px;
 		border: 0;
 		border-radius: 999px;
-		background: var(--card);
+		--bubble-bg: var(--card);
+		--bubble-grow: 3px;
 		color: var(--ink);
 		font: inherit;
 		font-size: 12px;
-		transition: background 0.2s ease;
 	}
-	.copy:hover { background: var(--accent); }
+	.copy:hover { --bubble-bg: var(--accent); }
 
 	/* Teaser under Info and Work */
 	.teaser {
@@ -779,6 +766,5 @@ const socials = [
 
 	@media (prefers-reduced-motion: reduce) {
 		.tools :global(.marquee-track) { animation: none; }
-		:global(html) { scroll-behavior: auto; }
 	}
 </style>
