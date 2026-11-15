@@ -581,27 +581,41 @@ const socials = [
 		border-radius: inherit;
 		overflow: hidden;
 	}
-	.resume-lanyard :global(.resume-lanyard-link) {
+	.resume-lanyard :global(.resume-lanyard-3d) {
 		position: absolute;
-		width: 1px;
-		height: 1px;
-		overflow: hidden;
-		clip-path: inset(50%);
-		white-space: nowrap;
+		inset: 0;
+		opacity: 0;
+		transition: opacity 0.35s ease;
 	}
-	.resume-lanyard :global(.resume-lanyard-link:focus-visible) {
-		width: auto;
-		height: auto;
-		clip-path: none;
-		right: 16px;
-		bottom: 14px;
-		padding: 6px 10px;
-		border-radius: 999px;
+	.resume-lanyard :global(.resume-lanyard-3d.is-ready) { opacity: 1; }
+	/* Static badge — same spot as the 3D one (anchor 0.83, card ≈ 55% of the card height) */
+	.resume-lanyard :global(.resume-badge-static) {
+		position: absolute;
+		top: 0;
+		left: 83%;
+		width: 39%;
+		max-width: 92px;
+		translate: -50% 0;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		transition: opacity 0.35s ease;
+	}
+	.resume-lanyard :global(.resume-badge-static.is-hidden) { opacity: 0; pointer-events: none; }
+	.resume-lanyard :global(.resume-badge-strap) {
+		width: 10px;
+		height: 52px;
 		background: var(--accent);
-		color: #fff;
-		font-size: 12px;
-		text-decoration: none;
+		border-radius: 0 0 2px 2px;
 	}
+	.resume-lanyard :global(.resume-badge-static img) {
+		display: block;
+		width: 100%;
+		height: auto;
+		border-radius: 7px;
+		box-shadow: 0 10px 24px -12px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.05);
+	}
+	.resume-lanyard :global(.resume-badge-static:focus-visible) { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 8px; }
 	.designs { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 	.design { padding: 6px; }
 	.preview {

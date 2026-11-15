@@ -3,7 +3,8 @@
 // Lanyard by React Bits (https://reactbits.dev/components/lanyard).
 // Local changes: optional `onTap` prop (quick tap on the card calls it instead of
 // flipping), numeric `anchor` (0–1 across the width) in addition to left/center/right,
-// and `maxPixelRatio` to cap render resolution (cheaper on phones).
+// `maxPixelRatio` to cap render resolution (cheaper on phones), and `onReady` / `onError`
+// callbacks (ready = first frame with card images drawn; error = no WebGL or context lost).
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -727,6 +728,8 @@ const Lanyard = ({
   intro = true,
   onTap,
   maxPixelRatio = 2,
+  onReady,
+  onError,
   className = '',
   style
 }) => {
@@ -756,7 +759,9 @@ const Lanyard = ({
     interactive,
     intro,
     onTap,
-    maxPixelRatio
+    maxPixelRatio,
+    onReady,
+    onError
   };
 
   useEffect(() => {
@@ -771,6 +776,7 @@ const Lanyard = ({
     try {
       renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     } catch {
+      settingsRef.current.onError?.();
       return undefined;
     }
     renderer.setClearColor(0x000000, 0);
@@ -986,6 +992,8 @@ const Lanyard = ({
           images.strap = strap;
           paintFaces();
           repaintStrap();
+          render();
+          settingsRef.current.onReady?.();
         });
       }
       const faceKey = `${layoutKey}|${s.cardColor}|${s.imageFit}`;
@@ -1275,6 +1283,12 @@ const Lanyard = ({
     };
     document.addEventListener('visibilitychange', onVisibility);
 
+    const onContextLost = event => {
+      event.preventDefault();
+      settingsRef.current.onError?.();
+    };
+    canvas.addEventListener('webglcontextlost', onContextLost);
+
     applyRef.current = apply;
     resize();
 
@@ -1291,6 +1305,7 @@ const Lanyard = ({
       canvas.removeEventListener('pointercancel', onPointerUp);
       canvas.removeEventListener('lostpointercapture', onPointerUp);
       canvas.removeEventListener('touchstart', onTouchStart);
+      canvas.removeEventListener('webglcontextlost', onContextLost);
       [bodyMesh, frontMesh, backMesh, ring, clampMesh, eyelet, band].forEach(mesh => mesh.geometry?.dispose());
       [frontMaterial, backMaterial, edgeMaterial, metalMaterial, bandMaterial].forEach(material => material.dispose());
       [frontTexture, backTexture, strapTexture, grain, weave].forEach(texture => texture.dispose());
