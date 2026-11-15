@@ -2,7 +2,8 @@
 
 // Lanyard by React Bits (https://reactbits.dev/components/lanyard).
 // Local changes: optional `onTap` prop (quick tap on the card calls it instead of
-// flipping) and numeric `anchor` (0–1 across the width) in addition to left/center/right.
+// flipping), numeric `anchor` (0–1 across the width) in addition to left/center/right,
+// and `maxPixelRatio` to cap render resolution (cheaper on phones).
 
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
@@ -725,6 +726,7 @@ const Lanyard = ({
   interactive = true,
   intro = true,
   onTap,
+  maxPixelRatio = 2,
   className = '',
   style
 }) => {
@@ -753,7 +755,8 @@ const Lanyard = ({
     breeze,
     interactive,
     intro,
-    onTap
+    onTap,
+    maxPixelRatio
   };
 
   useEffect(() => {
@@ -1254,7 +1257,7 @@ const Lanyard = ({
     const resize = () => {
       view.width = Math.max(1, container.clientWidth);
       view.height = Math.max(1, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, settingsRef.current.maxPixelRatio || 2));
       renderer.setSize(view.width, view.height, false);
       apply();
       render();
